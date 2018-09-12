@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "name": "Introduction",
+        "icon": "Introduction",
+        "link": "/introduction"
+    },
+    {
+        "id": 2,
+        "name": "Travel",
+        "icon": "Travel",
+        "link": "/travel",
+        "submenu": [
+            {
+                "id": 3,
+                "name": "Travel Voucher",
+                "icon": "Travel Voucher",
+                "link": "/travel/travel-voucher"
+            },
+            {
+                "id": 4,
+                "name": "Boingo",
+                "icon": "Boingo",
+                "link": "/travel/boingo"
+            },
+            {
+                "id": 5,
+                "name": "Lounge Access",
+                "icon": "Lounge Access",
+                "link": "/travel/lounge-access"
+            },
+            {
+                "id": 6,
+                "name": "International Airline Programme",
+                "icon": "International Airline Programme",
+                "link": "/travel/international-airline-programme"
+            },
+            {
+                "id": 7,
+                "name": "Partner Programmes",
+                "icon": "Partner Programmes",
+                "link": "/travel/partner-programmes"
+            },
+            {
+                "id": 8,
+                "name": "Cruise Privileges Programme",
+                "icon": "Cruise Privileges Programme",
+                "link": "/travel/cruise-privileges-programme"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Hotels",
+        "icon": "Hotels",
+        "link": "/hotels",
+        "submenu": [
+            {
+                "id": 10,
+                "name": "Fine Hotels & Resorts",
+                "icon": "Fine Hotels & Resorts",
+                "link": "/hotels/fine-hotels-and-resorts"
+            }
+        ]
+    }
+]
