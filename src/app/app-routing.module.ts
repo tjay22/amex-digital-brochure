@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ContentComponent } from './content/content.component';
 import { ContentDetailComponent } from './content-detail/content-detail.component';
+import { IntroductionComponent } from './introduction/introduction.component';
 
 const routes: Routes = [
 
   { path: '', redirectTo: '/introduction', pathMatch: 'full' },
-  { path: 'introduction', component: ContentComponent },
-  {  path: ':sublink', component: ContentDetailComponent }
+  { path: 'introduction', component: IntroductionComponent},
+  { path: ':link', component: ContentDetailComponent }
 
 ];
 

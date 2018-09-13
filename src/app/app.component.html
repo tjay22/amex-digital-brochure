@@ -5,18 +5,22 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="introduction">Introduction <span class="sr-only">(current)</span></a>
-      </li>
-      <li *ngFor="let menuItem of menuItems" class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{menuItem.name}}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a *ngFor="let subMenu of menuItem.submenu" class="dropdown-item" 
-            routerLink="{{subMenu.link}}">{{subMenu.name}}</a>
-        </div>
-      </li>
+      <ng-container *ngFor="let menuTopLevelItem of menuTopLevelItems">
+        <li *ngIf="!menuTopLevelItem.dropdown" class="nav-item">
+          <a class="nav-link" routerLink="{{menuTopLevelItem.link}}">{{menuTopLevelItem.name}} <span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="menuTopLevelItem.dropdown" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{menuTopLevelItem.name}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ng-container *ngFor="let menuSecondLevelItem of menuSecondLevelItems">
+              <a *ngIf="menuSecondLevelItem.parent == menuTopLevelItem.name" class="dropdown-item" 
+              routerLink="{{menuSecondLevelItem.link}}" [innerHTML]="menuSecondLevelItem.name"></a>
+            </ng-container>  
+          </div>
+        </li>
+      </ng-container>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -25,4 +29,11 @@
   </div>
 </nav>
 
-<router-outlet></router-outlet>
+
+<!-- <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+  <router-outlet #o="outlet"></router-outlet>
+</main> -->
+
+<div class="wrapper" #wrapper>
+  <router-outlet></router-outlet>
+</div>

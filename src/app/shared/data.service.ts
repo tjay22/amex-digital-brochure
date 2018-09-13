@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; 
 import { Observable, of } from 'rxjs';
 
+import { NavigationItem } from '../models/navigation.model';
+import { navigationTopLevelItems, navigationSecondLevelItems } from '../data/navigation';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +21,12 @@ export class DataService {
     return this.http.get(this._navMenu);
   }
 
-  getContent(id: number): Observable<any> {
-    return of(this.menuItems.find(content => this.menuItems.id === content));
+  getContents(): Observable<NavigationItem[]> {
+    return of(navigationTopLevelItems);
+  }
+
+  getContent(link: string): Observable<NavigationItem> {
+    return of(navigationSecondLevelItems.find(content => content.link === link));
   }
 
 }

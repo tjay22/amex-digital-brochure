@@ -1,3 +1,7 @@
-<p>
-  {{}}
-</p>
+<div *ngIf="content">
+
+  <h2>{{content.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{content.id}}</div>
+
+  <div [innerHTML]="htmlfile | safeHtml"></div>
+</div>
