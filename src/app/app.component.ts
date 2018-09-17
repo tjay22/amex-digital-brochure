@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, RouterOutlet } from '@angular/router';
 
 import { navigationTopLevelItems, navigationSecondLevelItems } from './data/navigation';
 import { DataService } from './shared/data.service';
 import { NavigationItem } from './models/navigation.model';
 
-import { fadeAnimation } from './animations';
+import { fadeAnimation, routeSlide } from './animations';
 import 'gsap';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [fadeAnimation]
+  animations: [routeSlide]
 })
 export class AppComponent implements OnInit {
   title = 'Digital Brochure';
@@ -40,5 +41,11 @@ export class AppComponent implements OnInit {
   getMenuItems(): void {
     this._data.getContents()
         .subscribe(content => this.menuitems = content);
+  }
+
+  getState(outletRef: RouterOutlet){
+    return{
+      value: outletRef.activatedRoute.snapshot.params.index
+    }
   }
 }

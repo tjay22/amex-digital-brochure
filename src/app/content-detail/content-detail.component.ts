@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, RouterOutlet } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 
@@ -49,5 +49,10 @@ export class ContentDetailComponent implements OnInit {
     this.http.get(this.content.htmlfile, {responseType: 'text'}).subscribe(data => this.htmlfile = data);
   }
   
+  getState(outletRef: RouterOutlet){
+    return{
+      value: outletRef.activatedRoute.snapshot.params.index
+    }
+  }
 
 }

@@ -1,5 +1,8 @@
 import { NavigationItem } from '../models/navigation.model';
 
+const pagespath = "./assets/pages/";
+const imagespath = "";
+
 export const navigationTopLevelItems: NavigationItem[] = [
     {
         "id": 1,
@@ -8,7 +11,8 @@ export const navigationTopLevelItems: NavigationItem[] = [
         "icon": "introduction",
         "link": "introduction",
         "parent": "null",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 0,
@@ -17,7 +21,8 @@ export const navigationTopLevelItems: NavigationItem[] = [
         "icon": "Travel",
         "link": "travel",
         "parent": "null",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 0,
@@ -26,7 +31,8 @@ export const navigationTopLevelItems: NavigationItem[] = [
         "icon": "Hotels",
         "link": "hotels",
         "parent": "null",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 0,
@@ -35,7 +41,8 @@ export const navigationTopLevelItems: NavigationItem[] = [
         "icon": "Lifestyle",
         "link": "lifestyle",
         "parent": "null",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 0,
@@ -44,7 +51,8 @@ export const navigationTopLevelItems: NavigationItem[] = [
         "icon": "Rewards",
         "link": "rewards",
         "parent": "null",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 0,
@@ -53,7 +61,8 @@ export const navigationTopLevelItems: NavigationItem[] = [
         "icon": "platinum-care",
         "link": "platinum-care",
         "parent": "null",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 0,
@@ -62,7 +71,8 @@ export const navigationTopLevelItems: NavigationItem[] = [
         "icon": "your-account",
         "link": "your-account",
         "parent": "null",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     }    
 ];
 
@@ -74,7 +84,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "travel-voucher",
         "link": "travel-voucher",
         "parent": "Travel",
-        "htmlfile": "./assets/pages/test.html"
+        "htmlfile": pagespath+"test.html",
+        "imagefile": imagespath+""
     },
     {
         "id": 3,
@@ -83,7 +94,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "boingo",
         "link": "boingo",
         "parent": "Travel",
-        "htmlfile": ""
+        "htmlfile": pagespath+"test.html",
+        "imagefile": imagespath+""
     },
     {
         "id": 4,
@@ -92,7 +104,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "lounge-access",
         "link": "lounge-access",
         "parent": "Travel",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 5,
@@ -101,7 +114,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "international-airline-programme",
         "link": "international-airline-programme",
         "parent": "Travel",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 6,
@@ -110,7 +124,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "partner-programmes",
         "link": "partner-programmes",
         "parent": "Travel",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 7,
@@ -119,7 +134,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "cruise-privileges-programme",
         "link": "cruise-privileges-programme",
         "parent": "Travel",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 8,
@@ -128,7 +144,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "hotels",
         "link": "hotels",
         "parent": "Hotels",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 9,
@@ -137,7 +154,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "fine-hotels-and-resorts",
         "link": "fine-hotels-and-resorts",
         "parent": "Hotels",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 10,
@@ -146,7 +164,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "the-hotel-collection",
         "link": "the-hotel-collection",
         "parent": "Hotels",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 11,
@@ -155,7 +174,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "the-vacation-collection",
         "link": "the-vacation-collection",
         "parent": "Hotels",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 12,
@@ -164,7 +184,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "hotel-loyalty-programmes",
         "link": "hotel-loyalty-programmes",
         "parent": "Hotels",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 13,
@@ -173,7 +194,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "american-express-invites",
         "link": "american-express-invites",
         "parent": "Lifestyle",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 14,
@@ -182,7 +204,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "membership-rewards",
         "link": "membership-rewards",
         "parent": "Rewards",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 15,
@@ -191,7 +214,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "concierge",
         "link": "concierge",
         "parent": "Platinum Care",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 16,
@@ -200,7 +224,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "travel-insurance",
         "link": "travel-insurance",
         "parent": "Platinum Care",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 17,
@@ -209,7 +234,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "car-rental-insurance",
         "link": "car-rental-insurance",
         "parent": "Platinum Care",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 18,
@@ -218,7 +244,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "purchase-protection",
         "link": "purchase-protection",
         "parent": "Platinum Care",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 19,
@@ -227,7 +254,8 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "managing-your-account",
         "link": "managing-your-account",
         "parent": "Your Account",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     },
     {
         "id": 20,
@@ -236,6 +264,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "icon": "your-contacts-online",
         "link": "your-contacts-online",
         "parent": "Your Account",
-        "htmlfile": ""
+        "htmlfile": pagespath+"",
+        "imagefile": imagespath+""
     }
 ];

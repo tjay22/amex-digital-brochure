@@ -30,10 +30,14 @@
 </nav>
 
 
-<!-- <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+<main [@routeSlide]="o.isActivated ? o.activatedRoute : ''">
   <router-outlet #o="outlet"></router-outlet>
+</main>
+
+<!-- <main [@fadeAnimation]="getState(outletRef)">
+  <router-outlet #outletRef="outlet"></router-outlet>
 </main> -->
 
-<div class="wrapper" #wrapper>
+<!-- <div class="wrapper" #wrapper>
   <router-outlet></router-outlet>
-</div>
+</div> -->

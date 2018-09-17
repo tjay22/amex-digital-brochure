@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.main-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+nav{
+    position: absolute;
+    z-index: 999;
+}
+
+.col-copy, .col-image{
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+}
+.col-copy{
+    background-color: red;
+}
+.col-image{
+    background-color: blue;
+}

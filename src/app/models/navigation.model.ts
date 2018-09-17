@@ -7,4 +7,5 @@ export class NavigationItem {
     public link: string;
     public parent: string;
     public htmlfile: string;
+    public imagefile: string;
 }
