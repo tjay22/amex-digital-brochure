@@ -1,0 +1,16 @@
+:host {
+    display: block;
+    width: 100vw;
+}
+
+.col-copy, .col-image{
+    width: 50vw;
+    height: 100vh;
+    flex-direction: column;
+}
+.col-copy{
+    background-color:beige;
+}
+.col-image{
+    background-color: lightblue;
+}

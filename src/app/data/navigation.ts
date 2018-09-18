@@ -1,7 +1,10 @@
-import { NavigationItem } from '../models/navigation.model';
+/* 
+    Navigation Menu data
+    navigationTopLevelItems and navigationSecondLevelItems used in app.components.ts to build menu
+    navigationItems used in content-detail.component.ts provided through data.service.ts
+*/
 
-const pagespath = "./assets/pages/";
-const imagespath = "";
+import { NavigationItem } from '../models/navigation.model';
 
 export const navigationTopLevelItems: NavigationItem[] = [
     {
@@ -10,70 +13,56 @@ export const navigationTopLevelItems: NavigationItem[] = [
         "name": "Introduction",
         "icon": "introduction",
         "link": "introduction",
-        "parent": "null",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "null"
     },
     {
         "id": 0,
         "dropdown": true,
         "name": "Travel",
         "icon": "Travel",
-        "link": "travel",
-        "parent": "null",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "link": "null",
+        "parent": "null"
     },
     {
         "id": 0,
         "dropdown": true,
         "name": "Hotels",
         "icon": "Hotels",
-        "link": "hotels",
-        "parent": "null",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "link": "null",
+        "parent": "null"
     },
     {
         "id": 0,
         "dropdown": true,
         "name": "Lifestyle",
         "icon": "Lifestyle",
-        "link": "lifestyle",
-        "parent": "null",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "link": "null",
+        "parent": "null"
     },
     {
         "id": 0,
         "dropdown": true,
         "name": "Rewards",
         "icon": "Rewards",
-        "link": "rewards",
-        "parent": "null",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "link": "null",
+        "parent": "null"
     },
     {
         "id": 0,
         "dropdown": true,
         "name": "Platinum Care",
         "icon": "platinum-care",
-        "link": "platinum-care",
-        "parent": "null",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "link": "null",
+        "parent": "null"
     },
     {
         "id": 0,
         "dropdown": true,
         "name": "Your Account",
         "icon": "your-account",
-        "link": "your-account",
-        "parent": "null",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
-    }    
+        "link": "null",
+        "parent": "null"
+    } 
 ];
 
 export const navigationSecondLevelItems: NavigationItem[] = [
@@ -83,9 +72,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Travel Voucher",
         "icon": "travel-voucher",
         "link": "travel-voucher",
-        "parent": "Travel",
-        "htmlfile": pagespath+"test.html",
-        "imagefile": imagespath+""
+        "parent": "Travel"
     },
     {
         "id": 3,
@@ -93,9 +80,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Boingo",
         "icon": "boingo",
         "link": "boingo",
-        "parent": "Travel",
-        "htmlfile": pagespath+"test.html",
-        "imagefile": imagespath+""
+        "parent": "Travel"
     },
     {
         "id": 4,
@@ -103,9 +88,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Lounge Access",
         "icon": "lounge-access",
         "link": "lounge-access",
-        "parent": "Travel",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Travel"
     },
     {
         "id": 5,
@@ -113,9 +96,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "International Airline Programme",
         "icon": "international-airline-programme",
         "link": "international-airline-programme",
-        "parent": "Travel",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Travel"
     },
     {
         "id": 6,
@@ -123,9 +104,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Partner Programmes",
         "icon": "partner-programmes",
         "link": "partner-programmes",
-        "parent": "Travel",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Travel"
     },
     {
         "id": 7,
@@ -133,9 +112,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Cruise Privileges Programme",
         "icon": "cruise-privileges-programme",
         "link": "cruise-privileges-programme",
-        "parent": "Travel",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Travel"
     },
     {
         "id": 8,
@@ -143,9 +120,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Hotels",
         "icon": "hotels",
         "link": "hotels",
-        "parent": "Hotels",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Hotels"
     },
     {
         "id": 9,
@@ -153,9 +128,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Fine Hotels & Resorts",
         "icon": "fine-hotels-and-resorts",
         "link": "fine-hotels-and-resorts",
-        "parent": "Hotels",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Hotels"
     },
     {
         "id": 10,
@@ -163,9 +136,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "The Hotel Collection",
         "icon": "the-hotel-collection",
         "link": "the-hotel-collection",
-        "parent": "Hotels",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Hotels"
     },
     {
         "id": 11,
@@ -173,9 +144,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "The Vacation Collection",
         "icon": "the-vacation-collection",
         "link": "the-vacation-collection",
-        "parent": "Hotels",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Hotels"
     },
     {
         "id": 12,
@@ -183,9 +152,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Hotel Loyalty Programmes",
         "icon": "hotel-loyalty-programmes",
         "link": "hotel-loyalty-programmes",
-        "parent": "Hotels",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Hotels"
     },
     {
         "id": 13,
@@ -193,9 +160,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "American Express Invites&reg;",
         "icon": "american-express-invites",
         "link": "american-express-invites",
-        "parent": "Lifestyle",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Lifestyle"
     },
     {
         "id": 14,
@@ -203,9 +168,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Membership Rewards&reg;",
         "icon": "membership-rewards",
         "link": "membership-rewards",
-        "parent": "Rewards",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Rewards"
     },
     {
         "id": 15,
@@ -213,9 +176,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Concierge",
         "icon": "concierge",
         "link": "concierge",
-        "parent": "Platinum Care",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Platinum Care"
     },
     {
         "id": 16,
@@ -223,9 +184,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Travel Insurance",
         "icon": "travel-insurance",
         "link": "travel-insurance",
-        "parent": "Platinum Care",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Platinum Care"
     },
     {
         "id": 17,
@@ -233,9 +192,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Car Rental Insurance",
         "icon": "car-rental-insurance",
         "link": "car-rental-insurance",
-        "parent": "Platinum Care",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Platinum Care"
     },
     {
         "id": 18,
@@ -243,9 +200,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Purchase Protection",
         "icon": "purchase-protection",
         "link": "purchase-protection",
-        "parent": "Platinum Care",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Platinum Care"
     },
     {
         "id": 19,
@@ -253,18 +208,25 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "name": "Managing your Account",
         "icon": "managing-your-account",
         "link": "managing-your-account",
-        "parent": "Your Account",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "parent": "Your Account"
     },
     {
         "id": 20,
         "dropdown": false,
-        "name": "Your Contacts Online",
-        "icon": "your-contacts-online",
-        "link": "your-contacts-online",
-        "parent": "Your Account",
-        "htmlfile": pagespath+"",
-        "imagefile": imagespath+""
+        "name": "Your Contacts",
+        "icon": "your-contacts",
+        "link": "your-contacts",
+        "parent": "Your Account"
+    }
+    ,
+    {
+        "id": 21,
+        "dropdown": false,
+        "name": "Online",
+        "icon": "online",
+        "link": "online",
+        "parent": "Your Account"
     }
 ];
+
+export const navigationItems: NavigationItem[] = navigationTopLevelItems.concat(navigationSecondLevelItems);

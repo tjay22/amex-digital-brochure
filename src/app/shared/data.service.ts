@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
+import * as Rx from "rxjs";
 
 import { HttpClient } from '@angular/common/http'; 
 import { Observable, of } from 'rxjs';
 
 import { NavigationItem } from '../models/navigation.model';
-import { navigationTopLevelItems, navigationSecondLevelItems } from '../data/navigation';
+import { navigationItems } from '../data/navigation';
+
+import { ContentItem } from '../models/content.model';
+import { contentItems } from '../data/content';
+
+import { ImageItem } from '../models/image.model';
+import { imageItems } from '../data/images';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +19,47 @@ import { navigationTopLevelItems, navigationSecondLevelItems } from '../data/nav
 
 export class DataService {
 
-  private _navMenu:string = './assets/data/navigation.json';
-  menuItems = this.getMenuItems();
+  private screenWidth = new Rx.BehaviorSubject<number>(window.innerWidth);
+  private screenHeight = new Rx.BehaviorSubject<number>(window.innerHeight);
+  private screenOrientation = new Rx.BehaviorSubject<string>(null);
+
+  currentScreenWidth = this.screenWidth.asObservable();
+  currentScreenHeight = this.screenHeight.asObservable();
+  currentScreenOrientation = this.screenOrientation.asObservable();
+
+  xs = 576;
+  sm = 768;
+  md = 992;
+  lg = 1200;
+
+  desktop = true;
+  mobile = false;
 
   constructor(private http: HttpClient) {}
 
-  public getMenuItems(): Observable<any> {
-    return this.http.get(this._navMenu);
+  getNavigation(link: string): Observable<NavigationItem> {
+    return of(navigationItems.find(content => content.link === link));
   }
 
-  getContents(): Observable<NavigationItem[]> {
-    return of(navigationTopLevelItems);
+  getHTML(id: Number): Observable<ContentItem> {
+    return of(contentItems.find(content => content.id === id));
   }
 
-  getContent(link: string): Observable<NavigationItem> {
-    return of(navigationSecondLevelItems.find(content => content.link === link));
+  getImage(id: Number): Observable<ImageItem> {
+    return of(imageItems.find(image => image.id === id));
   }
+
+  changeScreenWidth(width: number){
+    this.screenWidth.next(width);
+  }
+
+  changeScreenHeight(height: number){
+    this.screenHeight.next(height);
+  }
+
+  changeOrientation(val: string){
+    this.screenOrientation.next(val);
+  }
+
 
 }

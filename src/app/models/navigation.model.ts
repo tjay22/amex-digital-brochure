@@ -6,6 +6,5 @@ export class NavigationItem {
     public icon: string;
     public link: string;
     public parent: string;
-    public htmlfile: string;
-    public imagefile: string;
+    
 }

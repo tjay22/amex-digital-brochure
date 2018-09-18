@@ -1,5 +1,5 @@
 import { ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy } from '@angular/router';
-import { ContentDetailComponent } from './content-detail/content-detail.component';
+import { ContentComponent } from '../content/content.component';
 
 export class CustomReuseStrategy implements RouteReuseStrategy {
 
@@ -25,6 +25,6 @@ export class CustomReuseStrategy implements RouteReuseStrategy {
   }
 
   shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
-    return curr.component !== ContentDetailComponent;
+    return curr.component !== ContentComponent;
   }
 }

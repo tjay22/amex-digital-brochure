@@ -1,0 +1,19 @@
+@import  'variables';
+
+.section-image-container, .section-image{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.section-headline{
+    position: absolute;
+    transform: translateY(70vh);
+    margin: 2vh;
+    max-width: 25vw;
+    font-size: 3rem;
+    line-height: 3.5rem;
+    color: $white;
+    font-family: $font-stack-bold;
+}

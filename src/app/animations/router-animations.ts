@@ -31,14 +31,19 @@ export const routeSlide = trigger('routeSlide', [
   transition('* <=> *', [
     group([
       query(
+        ':enter',
+        [style({ transform: 'translateX(0%)' })],
+        { optional: true }
+      ),
+      query(
         ':leave',
         // here we apply a style and use the animate function to apply the style over 0.3 seconds
-        [style({ transform: 'translateX(100%)' }), animate('1s', style({ transform: 'translateX(0%)' }))],
+        [style({ transform: 'translateX(0%)' }), animate('.3s ease-in-out', style({ transform: 'translateX(-100%)' }))],
         { optional: true }
       ),
       query(
         ':enter',
-        [style({ transform: 'translateX(0%)' }), animate('1s', style({ transform: 'translateX(-100%)' }))],
+        [style({ transform: 'translateX(100%)' }), animate('.3s ease-in-out', style({ transform: 'translateX(0%)' }))],
         { optional: true }
       )
     ])

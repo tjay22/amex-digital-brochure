@@ -1,3 +1,10 @@
-<p>
-  content works!
-</p>
+<div *ngIf="content">
+  <section id="{{ content.title | safeId | lowercase }}" class="content-container">
+    <div class="col-copy">
+      <app-content-detail [content]="content"></app-content-detail>
+    </div>
+    <div class="col-image">
+      <app-content-image [image]="image"></app-content-image>
+    </div>
+  </section>
+</div>
