@@ -13,19 +13,28 @@ import { contentItems } from '../data/content';
 import { ImageItem } from '../models/image.model';
 import { imageItems } from '../data/images';
 
+import { PageTitle } from '../models/page-title.model';
+import { pageTitleItems } from '../data/page-titles';
+import { stagger } from '@angular/animations';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class DataService {
 
+  width;
+  height;
+
   private screenWidth = new Rx.BehaviorSubject<number>(window.innerWidth);
   private screenHeight = new Rx.BehaviorSubject<number>(window.innerHeight);
   private screenOrientation = new Rx.BehaviorSubject<string>(null);
+  private state = new Rx.BehaviorSubject<string>(null);
 
   currentScreenWidth = this.screenWidth.asObservable();
   currentScreenHeight = this.screenHeight.asObservable();
   currentScreenOrientation = this.screenOrientation.asObservable();
+  currentState = this.state.asObservable();
 
   xs = 576;
   sm = 768;
@@ -35,7 +44,11 @@ export class DataService {
   desktop = true;
   mobile = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.currentScreenWidth.subscribe(value => console.log("screenWidth: "+value));
+    this.currentScreenHeight.subscribe(value => console.log("screenHeight: "+value));
+    this.currentScreenOrientation.subscribe(value => console.log("screenOrientation: "+value));
+  }
 
   getNavigation(link: string): Observable<NavigationItem> {
     return of(navigationItems.find(content => content.link === link));
@@ -49,6 +62,14 @@ export class DataService {
     return of(imageItems.find(image => image.id === id));
   }
 
+  getPageTitle(id: Number): Observable<PageTitle> {
+    return of(pageTitleItems.find(pageTitle => pageTitle.id === id));
+  }
+
+  getCurrentState(){
+    return this.state;
+  }
+
   changeScreenWidth(width: number){
     this.screenWidth.next(width);
   }
@@ -59,6 +80,10 @@ export class DataService {
 
   changeOrientation(val: string){
     this.screenOrientation.next(val);
+  }
+
+  changeCollapse(val: string){
+    this.state.next(val);
   }
 
 

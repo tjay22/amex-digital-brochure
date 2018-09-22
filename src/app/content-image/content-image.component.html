@@ -1,4 +1,14 @@
-<div *ngIf="background" class="section-image-container">
-  <div class="section-image" [ngStyle]="currentStyles"></div>
-  <div class="section-headline">{{headline | uppercase}}</div>
+<div *ngIf="background" class="section-image-container" [ngClass]="state">
+  <div [@animateImagePanel]>
+    <div class="section-image" [ngStyle]="currentBackgroundStyles"></div>
+    <div class="section-headline-hidden">{{headlineText | uppercase}}</div>
+    <div class="section-headline" [ngStyle]="currentHeadlineStyles">{{headlineText | uppercase}}</div>
+  </div>
+</div>
+
+<div *ngIf="!background" class="section-image-container">
+  <div class="section-image">
+    <img [src]="imagefile" [ngStyle]="currentImageStyles">
+  </div>
+  <div class="section-headline" [ngStyle]="currentHeadlineStyles">{{headlineText | uppercase}}</div>
 </div>

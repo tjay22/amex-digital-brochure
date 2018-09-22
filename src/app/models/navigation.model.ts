@@ -6,5 +6,8 @@ export class NavigationItem {
     public icon: string;
     public link: string;
     public parent: string;
+    public state: string;
+    public imageID: Number;
+    public pageTitleID: Number;
     
 }

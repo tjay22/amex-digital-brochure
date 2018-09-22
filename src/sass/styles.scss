@@ -2,8 +2,10 @@
 
 // html{
 //     overflow: hidden;
-//     width:100%;
+//     width: 100%;
 //     height: 100%;
+//     width:100vw;
+//     height: 100vh;
 // }
 
 body{
@@ -12,16 +14,32 @@ body{
     font-size: 14px;
     font-family: $font-stack;
 }
+
 .main-container{
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     width: 100vw;
     height: 100vh;
     display: flex;
 }
 
-nav{
-    position: absolute;
-    z-index: 999;
+.popover{
+    background-color: rgba($dark-blue,.9);
+    color: $white;
+}
+.popover-body{
+    color:$white;
+}
+.bs-popover-auto[x-placement^=left] .arrow::after, 
+.bs-popover-left .arrow::after,
+.popover.bs-popover-auto[x-placement^=left] .arrow::after,
+.popover.bs-popover-left .arrow::after{
+    border-left-color:  rgba($dark-blue,.9);
+}
+.bs-popover-auto[x-placement^=top] .arrow::after,
+.bs-popover-top .arrow::after{
+    border-top-color:  rgba($dark-blue,.9);
 }

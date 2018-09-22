@@ -1,4 +1,5 @@
-import { trigger, animate, transition, style, query, group } from '@angular/animations';
+import { trigger, animate, transition, style, query as q, group, sequence, animateChild } from '@angular/animations';
+const query = (s,a,o={optional:true})=>q(s,a,o);
   
 export const fadeAnimation = trigger('fadeAnimation', [
   // The '* => *' will trigger the animation to change between any two states
@@ -37,7 +38,6 @@ export const routeSlide = trigger('routeSlide', [
       ),
       query(
         ':leave',
-        // here we apply a style and use the animate function to apply the style over 0.3 seconds
         [style({ transform: 'translateX(0%)' }), animate('.3s ease-in-out', style({ transform: 'translateX(-100%)' }))],
         { optional: true }
       ),
@@ -48,4 +48,33 @@ export const routeSlide = trigger('routeSlide', [
       )
     ])
   ])
+]);
+
+export const routerAnimation = trigger('changeRoute', [
+  transition('* => *', [
+    query(':enter, :leave', style({ position: 'fixed', width:'100%', height:'100%' })),
+    query(':enter', style({ transform: 'translateY(100%)' })),
+    sequence([
+      query(':leave', animateChild()), 
+      group([
+        query(':leave', [
+          style({ transform: 'translateY(0%)' }),
+          animate('500ms cubic-bezier(.75,-0.48,.26,1.52)', 
+            style({ transform: 'translateY(-100%)' }))
+        ]),
+        query(':enter', [
+          style({ transform: 'translateY(100%)' }),
+          animate('500ms cubic-bezier(.75,-0.48,.26,1.52)', 
+            style({ transform: 'translateY(0%)' })),
+        ]),
+      ]),
+      query(':enter', animateChild()),
+    ])
+  ])
+  // transition('* => *', [
+  //   sequence([
+  //     query(':leave', animateChild()),
+  //     query(':enter', animateChild())
+  //   ])
+  // ])
 ]);

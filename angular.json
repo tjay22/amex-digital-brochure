@@ -33,13 +33,18 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/sass"
+                "src/sass",
+                "node_modules/bootstrap/scss"
               ]
             },
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/gsap/src/uncompressed/TweenMax.js",
+              "node_modules/gsap/src/uncompressed/plugins/CSSPlugin.js",
+              "node_modules/gsap/src/uncompressed/plugins/TextPlugin.js",
+              "src/assets/js/svg-injector.min.js",
+              "src/assets/icons/fontawesome-all.min.js",
               "src/assets/js/scripts.js"
             ]
           },

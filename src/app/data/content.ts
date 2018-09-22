@@ -1,5 +1,9 @@
 /* 
     Content data
+    id          => should match ID in navigation.ts
+    htmlfile    => HTML file to load from ./assets/pages
+    parent      => to be used for breadcrumb
+    title       => to be used for breadcrumb
 */
 
 import { ContentItem } from '../models/content.model';

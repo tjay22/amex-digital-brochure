@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav *ngIf="mobile" class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -29,7 +29,31 @@
   </div>
 </nav>
 
+<div *ngIf="desktop" id="desktop-nav">
+    <nav>
+      <ul class="nav-list">
+        <li *ngFor="let menuTopLevelItem of menuTopLevelItems" id="{{menuTopLevelItem.name | safeId | lowercase}}" [class]="menuTopLevelItem.dropdown ? 'nav-dropdown nav-title' : 'nav-title'" (click)="toggle(menuTopLevelItem)">
 
-<main [@routeSlide]="o.isActivated ? o.activatedRoute : ''">
+          <div class="inner-nav">
+            <a [routerLink]="menuTopLevelItem.link != 'null' ? menuTopLevelItem.link : null" routerLinkActive="active" data-placement="left" data-trigger="hover" [attr.data-content]="menuTopLevelItem.name" data-toggle="popover" [attr.data-state]="menuTopLevelItem.state"><i class="{{menuTopLevelItem.icon}} fa-fw"></i> {{menuTopLevelItem.name}}</a>
+            
+            <div aria-labelledby="navbarDropdown" class="nav-dropdown">
+              <ng-container *ngFor="let menuSecondLevelItem of menuSecondLevelItems">
+                <a class="nav-dropdown-item" *ngIf="menuSecondLevelItem.parent == menuTopLevelItem.name" routerLink="{{menuSecondLevelItem.link}}" routerLinkActive="active"><span [innerHTML]="menuSecondLevelItem.name"></span></a>
+              </ng-container>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+
+<!-- <main [@routeTrigger]="o.isActivated ? o.activatedRoute : ''" class="main-container">
+  <router-outlet #o="outlet"></router-outlet>
+</main> -->
+
+<main [@changeRoute]="o.isActivated ? o.activatedRoute : ''" class="main-container">
   <router-outlet #o="outlet"></router-outlet>
 </main>

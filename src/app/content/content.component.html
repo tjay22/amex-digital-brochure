@@ -1,10 +1,11 @@
-<div *ngIf="content">
-  <section id="{{ content.title | safeId | lowercase }}" class="content-container">
-    <div class="col-copy">
+<div *ngIf="content" class="main-container">
+  <section id="{{ content.title | safeId | lowercase }}" class="content-container" [ngClass]="currentState">
+    <div class="col-copy" [@copyResize]="isCollapsed ? 'collapsed' : 'expanded'">
       <app-content-detail [content]="content"></app-content-detail>
     </div>
-    <div class="col-image">
-      <app-content-image [image]="image"></app-content-image>
+    <div class="col-image" [@imageResize]="isCollapsed ? 'collapsed' : 'expanded'">
+      <button id="panel-resizer" (click)="toggleCollapse()" [class]="currentState"><i class="fas fa-chevron-right fa-fw"></i></button>
+      <app-content-image [image]="image" [headline]="headline" [state]="currentState ? currentState : 'expanded'"></app-content-image>
     </div>
   </section>
 </div>
