@@ -19,7 +19,8 @@ export const imageItems: ImageItem[] = [
         "background": true,
         "bgPosX": "70%",
         "bgPosY": "0%",
-        "collapsedBgPosX": "80%"
+        "collapsedBgPosX": "80%",
+        "mobileBgPosX": "80%"
     },
     {
         "id": 2,
@@ -27,6 +28,7 @@ export const imageItems: ImageItem[] = [
         "background": true,
         "bgPosX": "10%",
         "bgPosY": "0%",
-        "collapsedBgPosX": "30%"
+        "collapsedBgPosX": "28%",
+        "mobileBgPosX": "28%"
     }
 ];

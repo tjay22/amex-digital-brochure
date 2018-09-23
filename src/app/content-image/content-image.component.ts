@@ -2,7 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { contentAnimation } from '../animations/content-animations';
 
+import { DataService } from '../shared/data.service';
+
 import { TweenMax, TweenLite, TimelineMax, TextPlugin, Linear, Power1, Power2, Elastic, CSSPlugin } from "gsap/TweenMax";
+
 
 //declare var TweenMax:any;
 declare var $: any;
@@ -19,21 +22,21 @@ export class ContentImageComponent implements OnInit {
   @Input() headline;
   @Input() state;
 
+  desktop;
+  mobile;
+
   imagefile;
   background;
   bgPosX;
   bgPosY;
   collapsedBgPosX;
+  mobileBgPosX;
   headlineText;
   hlPosX;
   hlPosY;
   hlColor;
   hlFontSize;
   hlWidth;
-  collapsedHLPosX;
-  collapsedHLPosY;
-  collapsedHLFontSize;
-  collapsedHLWidth;
 
   currentBackgroundStyles = {};
   currentImageStyles = {};
@@ -44,7 +47,10 @@ export class ContentImageComponent implements OnInit {
   backgroundDiv = $('.section-image');
 
 
-  constructor() {}
+  constructor(private data:DataService) {
+    this.desktop = this.data.desktop;
+    this.mobile = this.data.mobile;
+  }
 
   ngOnInit() {
     console.log("state onInit(): "+this.state);
@@ -68,20 +74,30 @@ export class ContentImageComponent implements OnInit {
     this.background = this.image.background;
     this.bgPosY = this.image.bgPosY ? this.image.bgPosY : '0%';
     this.headlineText = this.headline.headline;
-    if(this.state == "expanded"){
-      this.bgPosX =  this.image.bgPosX ? this.image.bgPosX : '-30%';
-      this.hlPosX = this.headline.hlPosX ? this.headline.hlPosX : '3vw';
-      this.hlPosY = this.headline.hlPosY ? this.headline.hlPosY : '50vh';
-      this.hlColor = this.headline.hlColor ? this.headline.hlColor : '#ffffff';
-      this.hlFontSize = this.headline.hlFontSize ? this.headline.hlFontSize : '2.5rem';
-      this.hlWidth = this.headline.hlWidth ? this.headline.hlWidth : '30vw';
-    }else if(this.state == "collapsed"){
-      this.bgPosX =  this.image.collapsedBgPosX ? this.image.collapsedBgPosX : '-30%';
-      this.hlPosX = this.headline.collapsedHLPosX ? this.headline.collapsedHLPosX : '2vw';
-      this.hlPosY = this.headline.collapsedHLPosY ? this.headline.collapsedHLPosY : '60vh';
-      this.hlColor = this.headline.collapsedHLColor ? this.headline.collapsedHLColor : '#ffffff';
-      this.hlFontSize = this.headline.collapsedHLFontSize ? this.collapsedHLFontSize : '2rem';
-      this.hlWidth = this.headline.collapsedHLWidth ? this.collapsedHLWidth : '20vw';
+    if(this.desktop){
+      if(this.state == "expanded"){
+        this.bgPosX =  this.image.bgPosX ? this.image.bgPosX : '-30%';
+        this.hlPosX = this.headline.hlPosX ? this.headline.hlPosX : '3vw';
+        this.hlPosY = this.headline.hlPosY ? this.headline.hlPosY : '50vh';
+        this.hlColor = this.headline.hlColor ? this.headline.hlColor : '#ffffff';
+        this.hlFontSize = this.headline.hlFontSize ? this.headline.hlFontSize : '2.5rem';
+        this.hlWidth = this.headline.hlWidth ? this.headline.hlWidth : '30vw';
+      }else if(this.state == "collapsed"){
+        this.bgPosX =  this.image.collapsedBgPosX ? this.image.collapsedBgPosX : '-30%';
+        this.hlPosX = this.headline.collapsedHLPosX ? this.headline.collapsedHLPosX : '2vw';
+        this.hlPosY = this.headline.collapsedHLPosY ? this.headline.collapsedHLPosY : '60vh';
+        this.hlColor = this.headline.collapsedHLColor ? this.headline.collapsedHLColor : '#ffffff';
+        this.hlFontSize = this.headline.collapsedHLFontSize ? this.headline.collapsedHLFontSize : '2rem';
+        this.hlWidth = this.headline.collapsedHLWidth ? this.headline.collapsedHLWidth : '20vw';
+      }
+    }
+    if(this.mobile){
+      this.bgPosX =  this.image.mobileBgPosX ? this.image.mobileBgPosX : '50%';
+      this.hlPosX = this.headline.mobileHLPosX ? this.headline.mobileHLPosX : '5vw';
+      this.hlPosY = this.headline.mobileHLPosY ? this.headline.mobileHLPosY : '60vh';
+      this.hlColor = this.headline.mobileHLColor ? this.headline.mobileHLColor : '#ffffff';
+      this.hlFontSize = this.headline.mobileHLFontSize ? this.headline.mobileHLFontSize : '2rem';
+      this.hlWidth = this.headline.mobileHLWidth ? this.headline.mobileHLWidth : '90vw';
     }
     this.setCurrentStyles();
   }

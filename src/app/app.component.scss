@@ -85,7 +85,11 @@
 }
 
 #mobile-nav{
-  
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 @include media-breakpoint-up(md){

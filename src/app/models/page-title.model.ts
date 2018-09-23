@@ -12,5 +12,10 @@ export class PageTitle {
     collapsedHLColor: string;
     collapsedHLFontSize: string;
     collapsedHLWidth: string;
+    mobileHLPosX: string;
+    mobileHLPosY: string;
+    mobileHLColor: string;
+    mobileHLFontSize: string;
+    mobileHLWidth: string;
     
 }

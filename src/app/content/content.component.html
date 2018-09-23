@@ -1,13 +1,28 @@
 <div *ngIf="content" class="main-container">
   <section id="{{ content.title | safeId | lowercase }}" class="content-container" [ngClass]="currentState">
     <div id="ws-background"></div>
-    <div id="logo"><img src="./assets/svg/logo-amex.svg" alt="American Express"></div>
-    <div class="col-copy" [@copyResize]="isCollapsed ? 'collapsed' : 'expanded'">
-      <app-content-detail [content]="content"></app-content-detail>
-    </div>
-    <div class="col-image" [@imageResize]="isCollapsed ? 'collapsed' : 'expanded'">
-      <button id="panel-resizer" (click)="toggleCollapse()" [class]="currentState"><i class="fas fa-chevron-right fa-fw"></i></button>
-      <app-content-image [image]="image" [headline]="headline" [state]="currentState ? currentState : 'expanded'"></app-content-image>
-    </div>
+    <div *ngIf="desktop" id="desktop-logo"><img src="./assets/svg/logo-amex.svg" alt="American Express"></div>
+    <div *ngIf="mobile" id="mobile-logo"><img src="./assets/svg/logo-amex.svg" alt="American Express"></div>
+    <ng-container *ngIf="desktop">
+      <div id="desktop">
+        <div class="col-copy" [@copyResize]="isCollapsed ? 'collapsed' : 'expanded'">
+          <app-content-detail [content]="content"></app-content-detail>
+        </div>
+        <div class="col-image" [@imageResize]="isCollapsed ? 'collapsed' : 'expanded'">
+          <button id="panel-resizer" (click)="toggleCollapse()" [class]="currentState"><i class="fas fa-chevron-right fa-fw"></i></button>
+          <app-content-image [image]="image" [headline]="headline" [state]="currentState ? currentState : 'expanded'"></app-content-image>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="mobile">
+      <div id="mobile">
+        <div class="col-image">
+          <app-content-image [image]="image" [headline]="headline" [state]="currentState ? currentState : 'expanded'"></app-content-image>
+        </div>
+        <div class="col-copy">
+          <app-content-detail [content]="content"></app-content-detail>
+        </div>
+      </div>
+    </ng-container>
   </section>
 </div>

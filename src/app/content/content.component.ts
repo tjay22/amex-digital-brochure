@@ -31,6 +31,8 @@ export class ContentComponent implements OnInit {
   pageTitleID: Number;
   isCollapsed = false;
   currentState = 'expanded';
+  desktop;
+  mobile;
 
   constructor(
 
@@ -39,7 +41,10 @@ export class ContentComponent implements OnInit {
     private data: DataService,
     private http: HttpClient
 
-  ) { }
+  ){
+    this.desktop = this.data.desktop;
+    this.mobile = this.data.mobile;
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {

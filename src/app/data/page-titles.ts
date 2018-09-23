@@ -28,7 +28,12 @@ export const pageTitleItems: PageTitle[] = [
         "collapsedHLPosY": "3vh",
         "collapsedHLColor": "",
         "collapsedHLFontSize": "",
-        "collapsedHLWidth": ""
+        "collapsedHLWidth": "",
+        "mobileHLPosX": "",
+        "mobileHLPosY": "8vh",
+        "mobileHLColor": "",
+        "mobileHLFontSize": "",
+        "mobileHLWidth": ""
     },
     {
         "id": 2,
@@ -42,7 +47,12 @@ export const pageTitleItems: PageTitle[] = [
         "collapsedHLPosY": "80vh",
         "collapsedHLColor": "",
         "collapsedHLFontSize": "",
-        "collapsedHLWidth": ""
+        "collapsedHLWidth": "",
+        "mobileHLPosX": "",
+        "mobileHLPosY": "70vh",
+        "mobileHLColor": "",
+        "mobileHLFontSize": "",
+        "mobileHLWidth": ""
     }
     ,
     {
@@ -57,6 +67,11 @@ export const pageTitleItems: PageTitle[] = [
         "collapsedHLPosY": "80vh",
         "collapsedHLColor": "",
         "collapsedHLFontSize": "",
-        "collapsedHLWidth": ""
+        "collapsedHLWidth": "",
+        "mobileHLPosX": "",
+        "mobileHLPosY": "70vh",
+        "mobileHLColor": "",
+        "mobileHLFontSize": "",
+        "mobileHLWidth": ""
     }
 ];

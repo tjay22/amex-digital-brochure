@@ -6,5 +6,6 @@ export class ImageItem {
     public bgPosX: string;
     public bgPosY: string;
     public collapsedBgPosX: string;
+    public mobileBgPosX: string;
     
 }

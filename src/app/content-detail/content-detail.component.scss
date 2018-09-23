@@ -51,3 +51,30 @@
 .section-content p{
   opacity: 0;
 }
+
+@include media-breakpoint-up(md){
+
+}
+
+@include media-breakpoint-up(sm){
+  
+}
+
+@include media-breakpoint-down(xs){
+  .section-content{
+    position: relative;
+    padding: 8rem 3rem 6rem;
+    width: 100%;
+    height: auto;
+  }
+  .section-content:before {
+    content: "";
+    width: 0%;
+    height: 0em;
+  }
+  .section-content:after {
+    content: "";
+    width: 0%;
+    height: 0em;
+  }
+}

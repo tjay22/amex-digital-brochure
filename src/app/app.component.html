@@ -1,4 +1,4 @@
-<nav *ngIf="mobile" class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- <nav *ngIf="mobile" id="mobile-nav" class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,12 +22,12 @@
         </li>
       </ng-container>
     </ul>
-    <!-- <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
+    </form>
   </div>
-</nav>
+</nav> -->
 
 <div *ngIf="desktop" id="desktop-nav">
   <nav>
@@ -49,29 +49,30 @@
   </nav>
 </div>
 
-<div *ngIf="mobile" id="mobile-nav" class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <nav>
+<nav *ngIf="mobile" id="mobile-nav" class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="nav-list navbar-nav mr-auto">
-        <li *ngFor="let menuTopLevelItem of menuTopLevelItems" id="{{menuTopLevelItem.name | safeId | lowercase}}" [class]="menuTopLevelItem.dropdown ? 'nav-dropdown nav-title' : 'nav-title'" (click)="toggle(menuTopLevelItem)">
+      <ul class="navbar-nav mr-auto">
+        <li *ngFor="let menuTopLevelItem of menuTopLevelItems" id="{{menuTopLevelItem.name | safeId | lowercase}}" [class]="menuTopLevelItem.dropdown ? 'nav-item dropdown' : 'nav-item'" (click)="toggle(menuTopLevelItem)">
 
-          <div class="inner-nav">
-            <a [routerLink]="menuTopLevelItem.link != 'null' ? menuTopLevelItem.link : null" routerLinkActive="active" data-placement="left" data-trigger="hover" [attr.data-content]="menuTopLevelItem.name" data-toggle="popover" [attr.data-state]="menuTopLevelItem.state"><i class="{{menuTopLevelItem.icon}} fa-fw"></i> {{menuTopLevelItem.name}}</a>
-            
-            <div aria-labelledby="navbarDropdown" class="nav-dropdown">
-              <ng-container *ngFor="let menuSecondLevelItem of menuSecondLevelItems">
-                <a class="nav-dropdown-item" *ngIf="menuSecondLevelItem.parent == menuTopLevelItem.name" routerLink="{{menuSecondLevelItem.link}}" routerLinkActive="active"><span [innerHTML]="menuSecondLevelItem.name"></span></a>
-              </ng-container>
-            </div>
+          <a *ngIf="menuTopLevelItem.link != 'null'" [routerLink]="menuTopLevelItem.link" routerLinkActive="active" class="nav-link"><i class="{{menuTopLevelItem.icon}} fa-fw"></i> {{menuTopLevelItem.name}}</a>
+
+          <a *ngIf="menuTopLevelItem.link == 'null'" [routerLink]="menuTopLevelItem.link != 'null' ? menuTopLevelItem.link : null" routerLinkActive="active" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="{{menuTopLevelItem.icon}} fa-fw"></i> {{menuTopLevelItem.name}}</a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ng-container *ngFor="let menuSecondLevelItem of menuSecondLevelItems">
+              <a *ngIf="menuSecondLevelItem.parent == menuTopLevelItem.name" class="dropdown-item" 
+              routerLink="{{menuSecondLevelItem.link}}" routerLinkActive="active" [innerHTML]="menuSecondLevelItem.name"></a>
+            </ng-container>  
           </div>
+
         </li>
       </ul>
-    </div>  
+    </div>
   </nav>
-</div>
 
 
 <!-- <main [@routeTrigger]="o.isActivated ? o.activatedRoute : ''" class="main-container">

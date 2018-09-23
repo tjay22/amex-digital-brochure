@@ -116,7 +116,7 @@ export const navigationSecondLevelItems: NavigationItem[] = [
         "parent": "Travel",
         "state": "closed",
         "imageID": 2,
-        "pageTitleID": 2
+        "pageTitleID": 3
     },
     {
         "id": 4,
