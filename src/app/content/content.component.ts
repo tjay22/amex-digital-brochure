@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http'; 
 
@@ -10,6 +10,7 @@ import { ContentItem } from '../models/content.model';
 import { pageResizeAnimation } from '../animations/page-animations';
 import { contentAnimation } from '../animations/content-animations';
 
+@HostBinding('@animateImagePanel')
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',

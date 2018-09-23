@@ -4,6 +4,31 @@
     width: 100vw;
 }
 
+#logo{
+    width: 50px;
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 1rem;
+    z-index: 30;
+
+    img{
+        width: 70px;
+    }
+}
+
+.main-container{
+    background-color: $color-platinum;
+}
+
+#ws-background{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: url('/assets/svg/ws-pattern.svg') repeat;
+    opacity: 0.2;
+}
+
 .content-container{
     display: flex;
     width: 100%;
@@ -22,6 +47,8 @@
     flex-wrap: wrap;
     position: relative;
     overflow: hidden;
+    z-index: 20;
+    background-color: $white;
 }
 
 #panel-resizer{

@@ -43,7 +43,7 @@ export class ContentDetailComponent implements OnInit {
     if(this.content.parent == 'null'){
       this.breadcrumb = this.content.title;
     }else{
-      this.breadcrumb = this.content.parent + ' <span class="breadcrumb-arrow"><i class="fas fa-chevron-right fa-fw"></i></span> ' + this.content.title;
+      this.breadcrumb = this.content.parent + ': ' + this.content.title;
     }
     this.http.get(this.content.htmlfile, {responseType: 'text'}).subscribe(data => this.copy = data);
 

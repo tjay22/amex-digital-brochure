@@ -1,7 +1,6 @@
 <div *ngIf="background" class="section-image-container" [ngClass]="state">
   <div [@animateImagePanel]>
     <div class="section-image" [ngStyle]="currentBackgroundStyles"></div>
-    <div class="section-headline-hidden">{{headlineText | uppercase}}</div>
     <div class="section-headline" [ngStyle]="currentHeadlineStyles">{{headlineText | uppercase}}</div>
   </div>
 </div>

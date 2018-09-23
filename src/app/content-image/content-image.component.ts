@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { contentAnimation } from '../animations/content-animations';
 
-import { TweenMax, TweenLite, TextPlugin, Linear, Power1, Power2, Elastic, CSSPlugin } from "gsap/TweenMax";
+import { TweenMax, TweenLite, TimelineMax, TextPlugin, Linear, Power1, Power2, Elastic, CSSPlugin } from "gsap/TweenMax";
 
 //declare var TweenMax:any;
 declare var $: any;
@@ -39,8 +39,12 @@ export class ContentImageComponent implements OnInit {
   currentImageStyles = {};
   currentHeadlineStyles = {};
 
+  headlineAnimation = new TimelineMax();
+  headlineDiv = $('.section-headline');
+  backgroundDiv = $('.section-image');
 
-  constructor() { }
+
+  constructor() {}
 
   ngOnInit() {
     console.log("state onInit(): "+this.state);
@@ -50,14 +54,20 @@ export class ContentImageComponent implements OnInit {
   ngOnChanges() {
     console.log("state onChanges(): "+this.state);
     this.createStyles();
+    //this.animateElements('out');
   }
 
   createStyles(){
+    // console.log("=======================");
+    // console.log("image: "+this.image );
+    // console.log("headline: "+this.headline);
+    // console.log("state: "+this.state);
+    // console.log("=======================");
+
     this.imagefile = this.image.imagefile;
     this.background = this.image.background;
     this.bgPosY = this.image.bgPosY ? this.image.bgPosY : '0%';
     this.headlineText = this.headline.headline;
-    console.log("headlineText: "+this.headlineText);
     if(this.state == "expanded"){
       this.bgPosX =  this.image.bgPosX ? this.image.bgPosX : '-30%';
       this.hlPosX = this.headline.hlPosX ? this.headline.hlPosX : '3vw';
@@ -95,20 +105,27 @@ export class ContentImageComponent implements OnInit {
       'font-size': this.hlFontSize,
       'max-width': this.hlWidth
     }
-    this.animateHeadline();
+    //this.animateElements('in');
   }
 
-  animateHeadline(){
+  checkAnimation(){
+    console.log('animation complete');
+    this.createStyles();
+  }
 
-    setTimeout (() => {
-      $('.section-headline').each(function(){
-        $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, '<span class="letter">$&</span>'));
-      });
-      TweenMax.staggerFromTo('.section-headline .letter', 1, {y: 50, opacity: 0}, {y: 0, opacity: 1, ease:Elastic.ease}, .1);
-      TweenLite.to('.section-headline', 1, {text:this.headlineText, ease:Linear.easeNone});
-      //TweenLite.to('.section-headline', 1, {text:this.headlineText, ease:Linear.easeNone});
-      //TweenLite.to('.section-headline', 1, {text:{value:this.headlineText, padSpace:true}, ease:Linear.easeNone});
-    }, 500);
+  animateElements(state: string){
+
+    if(state == 'out'){
+      this.headlineAnimation.add(TweenLite.fromTo(this.headlineDiv, 1, {opacity: 1, transform: 'translateX(0px)'}, {opacity: 0, transform: 'translateX(-50px)'}));
+      this.headlineAnimation.add(TweenLite.fromTo(this.backgroundDiv, 1, {opacity: 1}, {opacity: 0}));
+      setTimeout (() => {
+        this.createStyles();
+      }, 1000);
+    }else if(state == 'in'){
+      this.headlineAnimation.add(TweenLite.fromTo(this.headlineDiv, 1, {opacity: 0, transform: 'translateX(-50px)'}, {opacity: 1, transform: 'translateX(0px)'}));
+      this.headlineAnimation.add(TweenLite.fromTo(this.backgroundDiv, 1, {opacity: 0}, {opacity: 1}));
+    }
+    this.headlineAnimation.play();
 
   }
 

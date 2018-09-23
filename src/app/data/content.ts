@@ -19,13 +19,13 @@ export const contentItems: ContentItem[] = [
     },
     {
         "id": 2,
-        "htmlfile": pagespath+"test.html",
+        "htmlfile": pagespath+"travel-voucher.html",
         "parent": "Travel",
         "title": "Travel Voucher"
     },
     {
         "id": 3,
-        "htmlfile": pagespath+"test.html",
+        "htmlfile": pagespath+"boingo.html",
         "parent": "Travel",
         "title": "Boingo"
     },
