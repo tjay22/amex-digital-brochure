@@ -66,8 +66,16 @@ export class DataService {
     return of(pageTitleItems.find(pageTitle => pageTitle.id === id));
   }
 
+  getSublink(id: Number): Observable<NavigationItem> {
+    return of(navigationItems.find(content => content.id === id));
+  }
+
   getCurrentState(){
     return this.state;
+  }
+
+  getItemsLength(){
+    return navigationItems.length;
   }
 
   changeScreenWidth(width: number){

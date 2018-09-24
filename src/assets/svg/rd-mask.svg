@@ -1,0 +1,9 @@
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000">
+  <style>
+    .st2{fill:none;stroke:#000;stroke-width:35;stroke-miterlimit:10}
+  </style>
+  <path id="center" d="M963 564s-98-90-15-197c0 0 71-57 118 32 0 0 29 48-6 131" fill="none" stroke="#000" stroke-width="14" stroke-miterlimit="10"/>
+  <path id="outline" d="M967 596s-235-2-242-8-11-337-8-338-38.1-21.3 269-11l268 9s32 3.4 31 167.7-5 180.3-5 180.3h-211" fill="none" stroke="#000" stroke-width="30" stroke-miterlimit="10"/>
+  <path id="amex" class="st2" d="M797 288l408 6"/>
+  <path id="name" class="st2" d="M738.5 554h119"/>
+</svg>

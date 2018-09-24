@@ -4,5 +4,9 @@ export class ContentItem {
     public htmlfile: string;
     public parent: string;
     public title: string;
+    public previousTitle: string;
+    public previousLink: string;
+    public nextTitle: string;
+    public nextLink: string;
     
 }

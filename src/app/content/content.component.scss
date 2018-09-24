@@ -19,6 +19,7 @@
 
 .main-container{
     background-color: $color-platinum;
+    opacity: 0;
 }
 
 #ws-background{
@@ -52,6 +53,28 @@
         overflow: hidden;
         z-index: 20;
         background-color: $white;
+    }
+
+    .sub-navigation{
+        position: absolute;
+        bottom: 0;
+        z-index: 50;
+        padding: 1rem;
+        display: flex;
+        width: 100%;
+
+        .previous, .next{
+            flex-direction: column;
+            width: 50%;
+        }
+        .previous{
+            text-align: left;
+            float: left;
+        }
+        .next{
+            text-align: right;
+            float: right;
+        }
     }
 }
 

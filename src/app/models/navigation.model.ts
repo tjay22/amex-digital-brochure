@@ -1,6 +1,6 @@
 export class NavigationItem {
     
-    public id: Number;
+    public id: number;
     public dropdown: Boolean;
     public name: string;
     public icon: string;

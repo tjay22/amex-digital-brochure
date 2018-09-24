@@ -66,7 +66,17 @@ export const routerAnimation = trigger('changeRoute', [
           style({ transform: 'translateY(100%)' }),
           animate('500ms cubic-bezier(.75,-0.48,.26,1.52)', 
             style({ transform: 'translateY(0%)' })),
-        ]),
+        ])
+        // query(':leave', [
+        //   style({ opacity: 0 }),
+        //   animate('500ms', 
+        //     style({ opacity: 1 }))
+        // ]),
+        // query(':enter', [
+        //   style({ opacity: 1 }),
+        //   animate('500ms', 
+        //     style({ opacity: 0 })),
+        // ]),
       ]),
       query(':enter', animateChild()),
     ])

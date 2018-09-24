@@ -18,7 +18,7 @@ import { PageTitle } from '../models/page-title.model';
 export const pageTitleItems: PageTitle[] = [
     {
         "id": 1,
-        "headline": "Welcome to the Platinum World",
+        "headline": "",
         "hlPosX": "",
         "hlPosY": "3vh",
         "hlColor": "#ffffff",

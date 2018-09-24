@@ -1,0 +1,116 @@
+@import 'variables';
+
+.os-container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+
+    .fullscreen{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        img{
+            position: absolute;
+            bottom: 0;
+            width:100%;
+        }
+        svg{
+            position: absolute;
+            bottom: 0;
+            width:100%;
+        }
+    }
+    #clipping path{
+        stroke: #fff;
+        fill: none;
+    }
+    #final-scene{
+        height: 100vh;
+        background:url('/assets/images/introduction.jpg');
+        background-size: 100%;
+        background-position-x: 0%;
+        background-position-y: bottom;
+    }
+    #message{
+        position: absolute;
+        width: 36vw;
+        top:20vh;
+        left: 10vw;
+        color: $white;
+        text-transform: uppercase;
+        font-family: $font-stack-bold;
+        font-size: 3.5em;
+        line-height: 1.2em;
+        opacity: 0;
+        text-shadow: 1px 1px 1px rgba($black, 0.5);
+        transition: all 1s;
+    }
+    #message .word{
+        display: inline;
+    }
+    #message .letter{
+        opacity: 0;
+        display: inline-block;
+    }
+    #message.animate{
+        margin: 3vw;
+        top: 3vh;
+        font-size: 2.5rem;
+        width: 30vw;
+        left: 0;
+    }
+
+}
+
+.os-container #clipping #center{
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+}
+.os-container #clipping #outline{
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+}
+.os-container #clipping #amex{
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+}
+.os-container #clipping #name{
+    stroke-dasharray: 110;
+    stroke-dashoffset: 110;
+}
+#clipping.active #center{
+    animation: dash 1s ease-in-out forwards;
+}
+#clipping.active #outline{
+    animation: dash 3s ease-in-out forwards;
+}
+#clipping.active #amex{
+    animation: dash 1s ease-in-out 2s forwards;
+}
+#clipping.active #name{
+    animation: dash 1s ease-in-out 2.5s forwards;
+}
+.os-container #sheen{
+    opacity: 1;
+}
+.os-container #final.hide,
+.os-container #sheen.hide,
+.os-container #mask.hide{
+    animation: hide 1s ease-in-out 1.5s forwards;
+}
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes hide {
+    to {
+        opacity: 0;
+    }
+}
