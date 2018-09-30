@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataService } from '../shared/data.service';
+
 @Component({
   selector: 'app-opening-scene',
   templateUrl: './opening-scene.component.html',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OpeningSceneComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    console.log(this.data.currentOpeningScene);
   }
 
 }

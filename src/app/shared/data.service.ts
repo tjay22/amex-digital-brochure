@@ -30,11 +30,13 @@ export class DataService {
   private screenHeight = new Rx.BehaviorSubject<number>(window.innerHeight);
   private screenOrientation = new Rx.BehaviorSubject<string>(null);
   private state = new Rx.BehaviorSubject<string>(null);
+  private openingScene = new Rx.BehaviorSubject<Boolean>(true);
 
   currentScreenWidth = this.screenWidth.asObservable();
   currentScreenHeight = this.screenHeight.asObservable();
   currentScreenOrientation = this.screenOrientation.asObservable();
   currentState = this.state.asObservable();
+  currentOpeningScene = this.openingScene.asObservable();
 
   xs = 576;
   sm = 768;
@@ -48,6 +50,7 @@ export class DataService {
     this.currentScreenWidth.subscribe(value => console.log("screenWidth: "+value));
     this.currentScreenHeight.subscribe(value => console.log("screenHeight: "+value));
     this.currentScreenOrientation.subscribe(value => console.log("screenOrientation: "+value));
+    this.currentOpeningScene.subscribe(value => console.log("openingScene: "+value));
   }
 
   getNavigation(link: string): Observable<NavigationItem> {
@@ -92,6 +95,10 @@ export class DataService {
 
   changeCollapse(val: string){
     this.state.next(val);
+  }
+
+  playOpeningScene(val: Boolean){
+    this.openingScene.next(val);
   }
 
 
