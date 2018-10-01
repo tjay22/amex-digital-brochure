@@ -7,6 +7,7 @@
     top: 0;
     left: 0;
     overflow: hidden;
+    z-index: 100;
 
     .fullscreen{
         position: absolute;
@@ -17,12 +18,12 @@
 
         img{
             position: absolute;
-            bottom: 0;
+            top: -20vh;
             width:100%;
         }
         svg{
             position: absolute;
-            bottom: 0;
+            top: -20vh;
             width:100%;
         }
     }
@@ -35,7 +36,7 @@
         background:url('/assets/images/introduction.jpg');
         background-size: 100%;
         background-position-x: 0%;
-        background-position-y: bottom;
+        background-position-y: -20vh;
     }
     #message{
         position: absolute;

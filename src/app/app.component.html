@@ -85,4 +85,6 @@
   <router-outlet #o="outlet"></router-outlet>
 </main>
 
-<app-opening-scene></app-opening-scene>
+<ng-container *ngIf="playOpeningScene">
+  <app-opening-scene></app-opening-scene>
+</ng-container>

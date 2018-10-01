@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   navOpen = false;
   currentNav;
   currentState;
-  openingScene = true;
+  playOpeningScene;
 
   menuTopLevelItems = navigationTopLevelItems;
   menuSecondLevelItems = navigationSecondLevelItems;
@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getScreenSize();
+    this.data.currentOpeningScene.subscribe(value => this.playOpeningScene = value);
   }
 
   onResize(event){

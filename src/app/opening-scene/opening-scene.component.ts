@@ -9,10 +9,12 @@ import { DataService } from '../shared/data.service';
 })
 export class OpeningSceneComponent implements OnInit {
 
+  playOpeningScene;
+
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    console.log(this.data.currentOpeningScene);
+    this.data.currentOpeningScene.subscribe(value => this.playOpeningScene = value);
   }
 
 }
