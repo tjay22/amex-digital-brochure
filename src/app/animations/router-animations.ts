@@ -52,20 +52,25 @@ export const routeSlide = trigger('routeSlide', [
 
 export const routerAnimation = trigger('changeRoute', [
   transition('* => *', [
-    query(':enter, :leave', style({ position: 'fixed', width:'100%', height:'100%' })),
-    query(':enter', style({ transform: 'translateY(100%)' })),
+    query(':enter, :leave', style({ position: 'fixed'})),
+    query(':enter', style({ transform: 'translateX(100%)' })),
     sequence([
       query(':leave', animateChild()), 
+      query(':leave', [
+        style({ transform: 'scale(1)' }),
+        animate('500ms cubic-bezier(0.77, 0, 0.175, 1)', 
+          style({ transform: 'scale(.9)' }))
+      ]),
       group([
         query(':leave', [
-          style({ transform: 'translateY(0%)' }),
+          style({ transform: 'translateX(0%) scale(.9)' }),
           animate('500ms cubic-bezier(.75,-0.48,.26,1.52)', 
-            style({ transform: 'translateY(-100%)' }))
+            style({ transform: 'translateX(-100%) scale(.9)' }))
         ]),
         query(':enter', [
-          style({ transform: 'translateY(100%)' }),
+          style({ transform: 'translateX(100%) scale(.9)' }),
           animate('500ms cubic-bezier(.75,-0.48,.26,1.52)', 
-            style({ transform: 'translateY(0%)' })),
+            style({ transform: 'translateX(0%) scale(.9)' })),
         ])
         // query(':leave', [
         //   style({ opacity: 0 }),
@@ -77,6 +82,11 @@ export const routerAnimation = trigger('changeRoute', [
         //   animate('500ms', 
         //     style({ opacity: 0 })),
         // ]),
+      ]),
+      query(':enter', [
+        style({ transform: 'scale(.9)' }),
+        animate('500ms cubic-bezier(0.77, 0, 0.175, 1)', 
+          style({ transform: 'scale(1)' }))
       ]),
       query(':enter', animateChild()),
     ])

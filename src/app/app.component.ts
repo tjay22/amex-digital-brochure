@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   navOpen = false;
   currentNav;
   currentState;
-  playOpeningScene;
+  playOpeningScene = false;
 
   menuTopLevelItems = navigationTopLevelItems;
   menuSecondLevelItems = navigationSecondLevelItems;

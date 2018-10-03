@@ -1,8 +1,5 @@
 <div *ngIf="content" class="main-container">
   <section id="{{ content.title | safeId | lowercase }}" class="content-container" [ngClass]="currentState">
-    <div id="ws-background"></div>
-    <div *ngIf="desktop" id="desktop-logo"><img src="./assets/svg/logo-amex.svg" alt="American Express"></div>
-    <div *ngIf="mobile" id="mobile-logo"><img src="./assets/svg/logo-amex.svg" alt="American Express"></div>
     <ng-container *ngIf="desktop">
       <div id="desktop">
         <div class="col-copy" [@copyResize]="isCollapsed ? 'collapsed' : 'expanded'">

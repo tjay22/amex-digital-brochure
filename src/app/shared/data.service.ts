@@ -30,7 +30,7 @@ export class DataService {
   private screenHeight = new Rx.BehaviorSubject<number>(window.innerHeight);
   private screenOrientation = new Rx.BehaviorSubject<string>(null);
   private state = new Rx.BehaviorSubject<string>(null);
-  private openingScene = new Rx.BehaviorSubject<Boolean>(true);
+  private openingScene = new Rx.BehaviorSubject<boolean>(false);
 
   currentScreenWidth = this.screenWidth.asObservable();
   currentScreenHeight = this.screenHeight.asObservable();
@@ -97,7 +97,7 @@ export class DataService {
     this.state.next(val);
   }
 
-  playOpeningScene(val: Boolean){
+  playOpeningScene(val: boolean){
     this.openingScene.next(val);
   }
 

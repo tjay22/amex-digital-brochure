@@ -5,26 +5,20 @@ export const contentAnimation = [
     trigger('animateImagePanel', [
         transition(':enter', [
             group([
-                query('.section-content', style({
-                    opacity: 0,
-                    transform: 'translateY(150px)'
-                })),
+                // query('.section-content', style({
+                //     opacity: 0,
+                //     transform: 'translateY(150px)'
+                // })),
                 query('.section-image', style({
-                    opacity: 0
+                    transform: 'scale(1.1)'
                 })),
                 query('.section-headline', style({
                     opacity: 0,
                     transform: 'translateX(-100px)'
                 })),
-                query('.section-content', 
-                    animate('1s', style({
-                        opacity: 1,
-                        transform: 'translateY(0px)'
-                    })),
-                ),
                 query('.section-image', 
-                    animate('.5s', style({
-                        opacity: 1
+                    animate('2s cubic-bezier(0.075, 0.82, 0.165, 1)', style({
+                        transform: 'scale(1)'
                     })),
                 ),
                 query('.section-headline', 
@@ -37,12 +31,12 @@ export const contentAnimation = [
         ]),
         transition(':leave', [
             group([
-                query('.section-content', style({
-                    opacity: 1,
-                    transform: 'translateY(0px)'
-                })),
+                // query('.section-content', style({
+                //     opacity: 1,
+                //     transform: 'translateY(0px)'
+                // })),
                 query('.section-image', style({
-                    opacity: 1
+                    transform: 'scale(1)'
                 })),
                 query('.section-headline', style({
                     opacity: 1,
@@ -50,13 +44,12 @@ export const contentAnimation = [
                 })),
                 query('.section-content', 
                     animate('1s', style({
-                        opacity: 0,
-                        transform: 'translateY(150px)'
+                        opacity: 0
                     })),
                 ),
                 query('.section-image', 
-                    animate('.5s', style({
-                        opacity: 0
+                    animate('1s cubic-bezier(0.075, 0.82, 0.165, 1)', style({
+                        transform: 'scale(1.1)'
                     })),
                 ),
                 query('.section-headline', 

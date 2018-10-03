@@ -6,4 +6,10 @@
     -webkit-transition: $property;
     transition: $property;
 }
+@mixin mask($property) {
+    -moz-mask-image: $property;
+    -webkit-mask-image: $property;
+    mask-image: $property;
+    -webkit-mask-attachment: fixed;
+}
   

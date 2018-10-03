@@ -6,6 +6,27 @@
   width: 100%;
 }
 
+#desktop-logo{
+  width: 50px;
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 1rem;
+  z-index: 30;
+
+  img{
+      width: 50px;
+  }
+}
+
+#ws-background{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: url('/assets/svg/ws-pattern.svg') repeat;
+  opacity: 0.2;
+}
+
 #desktop-nav{
   position: fixed;
   z-index: 999;
@@ -101,5 +122,19 @@
 }
 
 @include media-breakpoint-down(xs){
+
+  #mobile-logo{
+    width: 100px;
+    position: fixed;
+    top:0;
+    right: 0;
+    text-align: right;
+    padding: .75rem 1rem;
+    z-index: 120;
+
+    img{
+        width: 40px;
+    }
+}
    
 }
