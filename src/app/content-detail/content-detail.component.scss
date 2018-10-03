@@ -29,13 +29,7 @@
   opacity: 0;
 }
 
-@include media-breakpoint-up(md){
 
-}
-
-@include media-breakpoint-up(sm){
-  
-}
 
 @include media-breakpoint-down(xs){
   .section-content{
@@ -54,5 +48,20 @@
     content: "";
     width: 0%;
     height: 0em;
+  }
+}
+
+@include media-breakpoint-up(sm){
+  
+}
+
+@include media-breakpoint-up(md){
+
+}
+
+@media (min-width: 2000px) {
+  .section-content{
+    padding: 12rem 3rem 6rem;
+    @include mask(linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 12%,rgba(0,0,0,1) 20%,rgba(0,0,0,1) 80%,rgba(0,0,0,0) 90%,rgba(0,0,0,0) 100%));
   }
 }

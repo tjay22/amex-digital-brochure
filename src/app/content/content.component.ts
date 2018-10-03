@@ -10,14 +10,14 @@ import { ContentItem } from '../models/content.model';
 import { pageResizeAnimation } from '../animations/page-animations';
 import { contentAnimation } from '../animations/content-animations';
 
-@HostBinding('@animateImagePanel')
+@HostBinding('@animateContentPanels')
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss'],
   animations: [ pageResizeAnimation, contentAnimation ],
   host: {
-    '[@animateImagePanel]': ''
+    '[@animateContentPanels]': ''
   }
 })
 export class ContentComponent implements OnInit {

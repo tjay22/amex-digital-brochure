@@ -7,7 +7,7 @@
 }
 
 #desktop-logo{
-  width: 50px;
+  width: 6vw;
   position: absolute;
   top:0;
   left: 0;
@@ -15,7 +15,7 @@
   z-index: 30;
 
   img{
-      width: 50px;
+      width: 100%;
   }
 }
 
@@ -113,14 +113,6 @@
   left: 0;
 }
 
-@include media-breakpoint-up(md){
-
-}
-
-@include media-breakpoint-up(sm){
-  
-}
-
 @include media-breakpoint-down(xs){
 
   #mobile-logo{
@@ -135,6 +127,28 @@
     img{
         width: 40px;
     }
-}
+  }
    
+}
+
+@include media-breakpoint-up(md){
+
+}
+
+@include media-breakpoint-up(sm){
+  
+}
+
+@include media-breakpoint-up(lg){
+
+}
+
+@include media-breakpoint-up(xl){
+  
+}
+
+@media (min-width: 2000px) {
+  #desktop-logo{
+    max-width: 5vw;
+  }
 }

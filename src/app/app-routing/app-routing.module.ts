@@ -9,7 +9,6 @@ import { CustomReuseStrategy } from './route-reuse-strategy';
 const routes: Routes = [
 
   { path: '', redirectTo: '/introduction', pathMatch: 'full' },
-  { path: 'welcome-to-the-platinum-world', component: OpeningSceneComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
   { path: ':link', component: ContentComponent },
   
