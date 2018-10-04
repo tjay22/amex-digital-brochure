@@ -29,7 +29,7 @@ export class ContentDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("content: "+this.content.htmlfile);
+    //console.log("content: "+this.content.htmlfile);
     this.copy = this.content.htmlfile;
     this.getHTML();
   }

@@ -1,4 +1,5 @@
 <div *ngIf="content" class="main-container">
+  <!-- [@animateContentPanels]="isMainSection ? 'main' : 'subsection'" -->
   <section id="{{ content.title | safeId | lowercase }}" class="content-container" [ngClass]="currentState">
     <ng-container *ngIf="desktop">
       <div id="desktop">

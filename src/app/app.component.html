@@ -86,7 +86,11 @@
   <router-outlet #o="outlet"></router-outlet>
 </main> -->
 
-<main [@changeRoute]="o.isActivated ? o.activatedRoute : ''" class="main-container">
+<!-- <main [@changeRoute]="o.isActivated ? o.activatedRoute : ''" class="main-container">
+  <router-outlet #o="outlet"></router-outlet>
+</main> -->
+
+<main [@changeRoute]="getSectionState(o)" class="main-container">
   <router-outlet #o="outlet"></router-outlet>
 </main>
 

@@ -23,7 +23,7 @@ var screenResizeCount = 0;
 var resizeId;
 
 $(document).ready(function() {
-    console.log("document ready");
+    //console.log("document ready");
     screenWidth = $(window).width();
     screenHeight = $(window).height();
     prevScreenWidth = screenWidth;
@@ -61,8 +61,8 @@ $( window ).resize(function() {
 
 $(document).mouseup(function (e) {
     //console.log("document.mouseup function: "+$('#'+navMenu).find(e.target).length);
-    console.log('currNav: '+currNav);
-    console.log('prevNav: '+prevNav);
+    // console.log('currNav: '+currNav);
+    // console.log('prevNav: '+prevNav);
     if(!$('#'+navMenu).find(e.target).length == 1){
         openCloseNav();
         currNav = null;

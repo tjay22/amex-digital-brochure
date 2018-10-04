@@ -30,13 +30,17 @@ export class DataService {
   private screenHeight = new Rx.BehaviorSubject<number>(window.innerHeight);
   private screenOrientation = new Rx.BehaviorSubject<string>(null);
   private state = new Rx.BehaviorSubject<string>(null);
+  private sectionState = new Rx.BehaviorSubject<string>('main');
   private openingScene = new Rx.BehaviorSubject<boolean>(false);
+  private imageLoadedId = new Rx.BehaviorSubject<Number>(1);
 
   currentScreenWidth = this.screenWidth.asObservable();
   currentScreenHeight = this.screenHeight.asObservable();
   currentScreenOrientation = this.screenOrientation.asObservable();
   currentState = this.state.asObservable();
+  currentSectionState = this.sectionState.asObservable();
   currentOpeningScene = this.openingScene.asObservable();
+  currentImageId = this.imageLoadedId.asObservable();
 
   xs = 576;
   sm = 768;
@@ -47,10 +51,10 @@ export class DataService {
   mobile = false;
 
   constructor(private http: HttpClient) {
-    this.currentScreenWidth.subscribe(value => console.log("screenWidth: "+value));
-    this.currentScreenHeight.subscribe(value => console.log("screenHeight: "+value));
-    this.currentScreenOrientation.subscribe(value => console.log("screenOrientation: "+value));
-    this.currentOpeningScene.subscribe(value => console.log("openingScene: "+value));
+    // this.currentScreenWidth.subscribe(value => console.log("screenWidth: "+value));
+    // this.currentScreenHeight.subscribe(value => console.log("screenHeight: "+value));
+    // this.currentScreenOrientation.subscribe(value => console.log("screenOrientation: "+value));
+    // this.currentOpeningScene.subscribe(value => console.log("openingScene: "+value));
   }
 
   getNavigation(link: string): Observable<NavigationItem> {
@@ -77,9 +81,13 @@ export class DataService {
     return this.state;
   }
 
+  getSectionState(){
+    return this.sectionState;
+  }
+
   getItemsLength(){
     return navigationItems.length;
-  }
+  }  
 
   changeScreenWidth(width: number){
     this.screenWidth.next(width);
@@ -95,6 +103,14 @@ export class DataService {
 
   changeCollapse(val: string){
     this.state.next(val);
+  }
+
+  changeSectionState(val: string){
+    this.sectionState.next(val);
+  }
+
+  changeLoadedImageId(val: Number){
+    this.imageLoadedId.next(val);
   }
 
   playOpeningScene(val: boolean){

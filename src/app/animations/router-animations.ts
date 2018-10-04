@@ -83,23 +83,80 @@ export const routeSlide = trigger('routeSlide', [
 //   ])
 // ]);
 
-export const routerAnimation = trigger('changeRoute', [
-  transition('* => *', [
-    query(':enter, :leave', style({ position: 'fixed'})),
-    group([
-      query(':leave', animateChild()), 
-      query(':enter', [
-        style({transform: 'translateX(0%) scale(.5)', 'z-index': '1', opacity: 0}),
-        animate('.7s ease-in-out', style({ 
-          transform: 'scale(1)',
-          'z-index': 2,
-          opacity: 1
-        })),
-      ]),
-      query(':leave', [
-        style({transform: 'translateX(0%) scale(1)', 'z-index': 2})
-      ]),
-      query(':enter', animateChild()),
-    ])
+// export const routerAnimation = trigger('changeRoute', [
+//   transition('* => *', [
+//     query(':enter, :leave', style({ position: 'fixed'})),
+//     group([
+//       query(':leave', animateChild()), 
+//       query(':enter', [
+//         style({transform: 'translateX(0%) scale(.5)', 'z-index': '1', opacity: 0}),
+//         animate('.7s ease-in-out', style({ 
+//           transform: 'scale(1)',
+//           'z-index': 2,
+//           opacity: 1
+//         })),
+//       ]),
+//       query(':leave', [
+//         style({transform: 'translateX(0%) scale(1)', 'z-index': 2})
+//       ]),
+//       query(':enter', animateChild()),
+//     ])
+//   ])
+// ]);
+
+const mainSectionAnimation = [
+  query(':enter, :leave', style({ position: 'fixed'})),
+  group([
+    query(':leave', animateChild()), 
+    query(':enter', [
+      style({transform: 'translateX(0%) scale(.5)', 'z-index': '1', opacity: 0}),
+      animate('.7s ease-in-out', style({ 
+        transform: 'scale(1)',
+        'z-index': 2,
+        opacity: 1
+      })),
+    ]),
+    query(':leave', [
+      style({transform: 'translateX(0%) scale(1)', 'z-index': 2})
+    ]),
+    query(':enter', animateChild()),
   ])
+];
+
+const subSectionAnimation = [
+  query(':enter, :leave', style({ position: 'fixed'})),
+  query(':enter', style({ transform: 'translateX(100%)' })),
+  sequence([
+    query(':leave', animateChild()), 
+    query(':leave', [
+      style({ transform: 'scale(1)' }),
+      animate('500ms cubic-bezier(0.77, 0, 0.175, 1)', 
+        style({ transform: 'scale(.9)' }))
+    ]),
+    group([
+      query(':leave', [
+        style({ transform: 'translateX(0%) scale(.9)' }),
+        animate('500ms ease-in-out', 
+          style({ transform: 'translateX(-100%) scale(.9)' }))
+      ]),
+      query(':enter', [
+        style({ transform: 'translateX(100%) scale(.9)' }),
+        animate('500ms ease-in-out', 
+          style({ transform: 'translateX(0%) scale(.9)' })),
+      ])
+    ]),
+    query(':enter', [
+      style({ transform: 'scale(.9)' }),
+      animate('500ms cubic-bezier(0.77, 0, 0.175, 1)', 
+        style({ transform: 'scale(1)' }))
+    ]),
+    query(':enter', animateChild()),
+  ])
+];
+
+export const routerAnimation = trigger('changeRoute', [
+  transition('* => none', mainSectionAnimation),
+  transition('* => initial', subSectionAnimation),
+  transition('* => forward', mainSectionAnimation),
+  transition('* => backward', mainSectionAnimation)
 ]);

@@ -2,7 +2,7 @@ import { trigger, state, animate, transition, style, query as q, sequence, stagg
 const query = (s,a,o={optional:true})=>q(s,a,o);
 
 // export const contentAnimation = [
-//     trigger('animateImagePanel', [
+//     trigger('animateContentPanels', [
 //         transition(':enter', [
 //             group([
 //                 query('.section-image', style({
@@ -50,47 +50,117 @@ const query = (s,a,o={optional:true})=>q(s,a,o);
 //     ])
 // ];
 
-export const contentAnimation = [
-    trigger('animateContentPanels', [
-        transition(':leave', [
-            query('.col-copy', style({
-                transform: 'translateX(0%)'
-            })),
-            query('.col-image', style({
-                transform: 'translateX(0%)'
-            })),
-            group([
-                query('.col-copy', 
-                    animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                        transform: 'translateX(-100%)'
-                    })),
-                ),
-                query('.col-image', 
-                    animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                        transform: 'translateX(100%)'
-                    })),
-                ),
-            ])
-        ]),
-        transition(':enter', [
-            query('.col-copy', style({
-                transform: 'translateX(0%)'
-            })),
-            query('.col-image', style({
-                transform: 'translateX(0%)'
-            })),
-            group([
-                query('.col-copy', 
-                    animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                        transform: 'translateX(0%)'
-                    })),
-                ),
-                query('.col-image', 
-                    animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                        transform: 'translateX(0%)'
-                    })),
-                ),
-            ])
+// export const contentAnimation = [
+//     trigger('animateContentPanels', [
+//         transition(':leave', [
+//             query('.col-copy', style({
+//                 transform: 'translateX(0%)'
+//             })),
+//             query('.col-image', style({
+//                 transform: 'translateX(0%)'
+//             })),
+//             group([
+//                 query('.col-copy', 
+//                     animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
+//                         transform: 'translateX(-100%)'
+//                     })),
+//                 ),
+//                 query('.col-image', 
+//                     animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
+//                         transform: 'translateX(100%)'
+//                     })),
+//                 ),
+//             ])
+//         ]),
+//         transition(':enter', [
+//             query('.col-copy', style({
+//                 transform: 'translateX(0%)'
+//             })),
+//             query('.col-image', style({
+//                 transform: 'translateX(0%)'
+//             })),
+//             group([
+//                 query('.col-copy', 
+//                     animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
+//                         transform: 'translateX(0%)'
+//                     })),
+//                 ),
+//                 query('.col-image', 
+//                     animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
+//                         transform: 'translateX(0%)'
+//                     })),
+//                 ),
+//             ])
+//         ])
+//     ])
+// ];
+
+const mainSectionAnimation = [
+    transition(':enter', [
+        query('.col-copy', style({
+            transform: 'translateX(0%)'
+        })),
+        query('.col-image', style({
+            transform: 'translateX(0%)'
+        })),
+        group([
+            query('.col-copy', 
+                animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                    transform: 'translateX(0%)'
+                })),
+            ),
+            query('.col-image', 
+                animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                    transform: 'translateX(0%)'
+                })),
+            ),
+        ])
+    ]),
+    transition(':leave', [
+        query('.col-copy', style({
+            transform: 'translateX(0%)'
+        })),
+        query('.col-image', style({
+            transform: 'translateX(0%)'
+        })),
+        group([
+            query('.col-copy', 
+                animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                    transform: 'translateX(-100%)'
+                })),
+            ),
+            query('.col-image', 
+                animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                    transform: 'translateX(100%)'
+                })),
+            ),
         ])
     ])
 ];
+
+const subSectionAnimation = [
+    query(':enter', [
+        query('.col-copy', style({
+            transform: 'translateX(0%)'
+        })),
+        query('.col-image', style({
+            transform: 'translateX(0%)'
+        })),
+        group([
+            query('.col-copy', 
+                animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                    transform: 'translateX(0%)'
+                })),
+            ),
+            query('.col-image', 
+                animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                    transform: 'translateX(0%)'
+                })),
+            ),
+        ])
+    ])
+];
+
+export const contentAnimation = trigger('animateContentPanels', [
+    transition('* => forward', mainSectionAnimation)
+]);

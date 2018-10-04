@@ -53,12 +53,12 @@ export class ContentImageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("state onInit(): "+this.state);
+    //console.log("state onInit(): "+this.state);
     this.createStyles();
   }
 
   ngOnChanges() {
-    console.log("state onChanges(): "+this.state);
+    //console.log("state onChanges(): "+this.state);
     this.createStyles();
     //this.animateElements('out');
   }
@@ -125,7 +125,6 @@ export class ContentImageComponent implements OnInit {
   }
 
   checkAnimation(){
-    console.log('animation complete');
     this.createStyles();
   }
 
