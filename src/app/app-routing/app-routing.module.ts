@@ -9,14 +9,25 @@ import { CustomReuseStrategy } from './route-reuse-strategy';
 
 const routes: Routes = [
 
+  // { path: '', redirectTo: '/introduction', pathMatch: 'full' },
+  // { path: 'page-not-found', component: PageNotFoundComponent },
+  // { path: ':link', component: ContentComponent },
+
   { path: '', redirectTo: '/introduction', pathMatch: 'full' },
+  { path: 'introduction', component: ContentComponent },
+  { path: 'travel-voucher', component: ContentComponent },
+  { path: 'boingo', component: ContentComponent },
+  { path: 'lounge-access', component: ContentComponent },
+  { path: 'international-airline-programme', component: ContentComponent },
+  { path: 'partner-programmes', component: ContentComponent },
+  { path: 'cruise-privileges-programme', component: ContentComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
-  { path: ':link', component: ContentComponent },
+  { path: '**', component: PageNotFoundComponent },
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   providers: [],
   exports: [RouterModule]
 })

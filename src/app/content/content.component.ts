@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, Event, NavigationStart, NavigationEnd, NavigationError, ActivatedRouteSnapshot } from '@angular/router';
 import { HttpClient } from '@angular/common/http'; 
 
 import { DataService } from '../shared/data.service';
@@ -17,9 +17,9 @@ import { contentAnimation } from '../animations/content-animations';
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss'],
   animations: [ pageResizeAnimation, contentAnimation ],
-  host: {
-    '[@animateContentPanels]': 'isMainSection ? "main" : "subsection"'
-  }
+  // host: {
+  //   '[@animateContentPanels]': 'isMainSection ? "main" : "subsection"'
+  // }
 })
 export class ContentComponent implements OnInit {
 
@@ -59,56 +59,92 @@ export class ContentComponent implements OnInit {
     this.mobile = this.data.mobile;
     router.events.subscribe( (event: Event) => {
       if(event instanceof NavigationStart){
-        console.log("Navigation Start");
+        //console.log("Navigation Start");
       }
       if(event instanceof NavigationEnd){
-        console.log("Navigation End");
+        //console.log("Navigation End");
       }
       if(event instanceof NavigationError){
-        console.log("Error: "+event.error);
+        //console.log("Error: "+event.error);
       }
     });
   }
 
   ngOnInit() {
 
-    this.route.paramMap.subscribe((params: ParamMap) => {
+    const link = this.router.url.replace('/', '');
+    console.log("link: "+link);
 
-      this.data.currentImageId.subscribe(value => this.prevImageId = value);
+    this.data.currentImageId.subscribe(value => this.prevImageId = value);
 
-      const link = this.route.snapshot.paramMap.get('link');
-      console.log("link: "+link);
-      this.data.getNavigation(link).subscribe(content => this.navigation = content);
+    this.data.getNavigation(link).subscribe(content => this.navigation = content);
 
-      this.data.currentState.subscribe(value => this.currentState = value);
-      this.currentState == 'collapsed' ? this.isCollapsed = true : this.isCollapsed = false;
-      
-      if(this.navigation){
-        //console.log("this.prevImageId: "+this.prevImageId);
-        //console.log("this.navigaiton.imageId: "+this.navigation.imageID);
-        if(this.prevImageId == this.navigation.imageID){
-          this.data.changeSectionState('subsection');
-          //console.log("loading subsection");
-          this.isMainSection = false;
-        }else{
-          this.data.changeSectionState('main');
-          //console.log("loading main section")
-          this.isMainSection = true;
-        }
-
-        this.contentID = this.navigation.id;
-        this.imageID = this.navigation.imageID;
-        this.pageTitleID = this.navigation.pageTitleID;
-        this.getCopy();
-        this.getImage();
-        this.getPageTitle();
-        this.getPreviousLink();
-        this.getNextLink();
-        this.data.changeLoadedImageId(this.imageID);
+    this.data.currentState.subscribe(value => this.currentState = value);
+    this.currentState == 'collapsed' ? this.isCollapsed = true : this.isCollapsed = false;
+    
+    if(this.navigation){
+      //console.log("this.prevImageId: "+this.prevImageId);
+      //console.log("this.navigaiton.imageId: "+this.navigation.imageID);
+      if(this.prevImageId == this.navigation.imageID){
+        this.data.changeSectionState('subsection');
+        //console.log("loading subsection");
+        this.isMainSection = false;
       }else{
-        this.router.navigate(['/page-not-found']);
+        this.data.changeSectionState('main');
+        //console.log("loading main section")
+        this.isMainSection = true;
       }
-    });
+
+      this.contentID = this.navigation.id;
+      this.imageID = this.navigation.imageID;
+      this.pageTitleID = this.navigation.pageTitleID;
+      this.getCopy();
+      this.getImage();
+      this.getPageTitle();
+      this.getPreviousLink();
+      this.getNextLink();
+      this.data.changeLoadedImageId(this.imageID);
+    }else{
+      this.router.navigate(['/page-not-found']);
+    }
+
+    // this.route.paramMap.subscribe((params: ParamMap) => {
+
+    //   this.data.currentImageId.subscribe(value => this.prevImageId = value);
+
+    //   const link = this.route.snapshot.paramMap.get('link');
+    //   console.log("link: "+link);
+    //   this.data.getNavigation(link).subscribe(content => this.navigation = content);
+
+    //   this.data.currentState.subscribe(value => this.currentState = value);
+    //   this.currentState == 'collapsed' ? this.isCollapsed = true : this.isCollapsed = false;
+      
+    //   if(this.navigation){
+    //     //console.log("this.prevImageId: "+this.prevImageId);
+    //     //console.log("this.navigaiton.imageId: "+this.navigation.imageID);
+    //     if(this.prevImageId == this.navigation.imageID){
+    //       this.data.changeSectionState('subsection');
+    //       //console.log("loading subsection");
+    //       this.isMainSection = false;
+    //     }else{
+    //       this.data.changeSectionState('main');
+    //       //console.log("loading main section")
+    //       this.isMainSection = true;
+    //     }
+
+    //     this.contentID = this.navigation.id;
+    //     this.imageID = this.navigation.imageID;
+    //     this.pageTitleID = this.navigation.pageTitleID;
+    //     this.getCopy();
+    //     this.getImage();
+    //     this.getPageTitle();
+    //     this.getPreviousLink();
+    //     this.getNextLink();
+    //     this.data.changeLoadedImageId(this.imageID);
+    //   }else{
+    //     this.router.navigate(['/page-not-found']);
+    //   }
+    // });
     // this.data.getSectionState().subscribe(content => this.currentSectionState = content);
     // console.log("this.currentSectionState: "+this.currentSectionState);
   }

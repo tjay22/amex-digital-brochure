@@ -31,6 +31,7 @@ export class DataService {
   private screenOrientation = new Rx.BehaviorSubject<string>(null);
   private state = new Rx.BehaviorSubject<string>(null);
   private sectionState = new Rx.BehaviorSubject<string>('main');
+  private prevSectionState = new Rx.BehaviorSubject<string>('main');
   private openingScene = new Rx.BehaviorSubject<boolean>(false);
   private imageLoadedId = new Rx.BehaviorSubject<Number>(1);
 
@@ -39,6 +40,7 @@ export class DataService {
   currentScreenOrientation = this.screenOrientation.asObservable();
   currentState = this.state.asObservable();
   currentSectionState = this.sectionState.asObservable();
+  prevSectionStateVar = this.prevSectionState.asObservable();
   currentOpeningScene = this.openingScene.asObservable();
   currentImageId = this.imageLoadedId.asObservable();
 
@@ -107,6 +109,10 @@ export class DataService {
 
   changeSectionState(val: string){
     this.sectionState.next(val);
+  }
+
+  changePrevSectionState(val: string){
+    this.prevSectionState.next(val);
   }
 
   changeLoadedImageId(val: Number){

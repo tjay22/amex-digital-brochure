@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, RouterOutlet } from '@angular/router';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { ActivatedRoute, ParamMap, RouterOutlet, Router, NavigationEnd, NavigationStart } from '@angular/router';
 
 import { navigationTopLevelItems, navigationSecondLevelItems } from './data/navigation';
 import { DataService } from './shared/data.service';
@@ -27,25 +27,54 @@ export class AppComponent implements OnInit {
   navOpen = false;
   currentNav;
   currentState;
-  sectionState = 'main';
-  private previousPath: string = 'none';
-  private transitionName: string = 'main';
-  private counter = 1;
+  sectionState:string = 'none';
+  prevSectionState;
   playOpeningScene = false;
 
   menuTopLevelItems = navigationTopLevelItems;
   menuSecondLevelItems = navigationSecondLevelItems;
 
-  constructor(private data:DataService){
+  constructor(private data:DataService, private router: Router){
     this.data.currentScreenWidth.subscribe((value) => this.screenWidth = value );
     this.data.currentScreenHeight.subscribe((value) => this.screenHeight = value );
     this.data.currentScreenOrientation.subscribe((value) => this.screenOrientation = value );
+    this.data.currentOpeningScene.subscribe((value) => this.playOpeningScene = value);
+    this.data.currentSectionState.subscribe((value) => this.sectionState = value);
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log("-------------------------------------");
+        this.ngOnInit();
+      }
+    })
   }
 
   ngOnInit() {
     this.getScreenSize();
-    this.data.currentOpeningScene.subscribe(value => this.playOpeningScene = value);
-    this.counter = 1;
+    this.data.currentSectionState.subscribe((value) => this.sectionState = value);
+    this.data.prevSectionStateVar.subscribe((value) => this.prevSectionState = value);
+    console.log("this.sectionState: "+this.sectionState);
+    console.log("this.prevSectionState: "+this.prevSectionState);
+    //this.sectionState == 'main' ? this.sectionState = 'main-alt' : this.sectionState = 'main'
+    //this.sectionState == 'subsection' ? this.sectionState = 'subsection-alt' : this.sectionState = 'subsection'
+    // if(this.sectionState == this.prevSectionState){
+    //   console.log("sectionState is the same as previousState");
+    //   this.sectionState = this.sectionState.concat("-alt");
+    //   console.log("newSectionState: "+this.sectionState);
+    // }else{
+    //   console.log("sectionState is not the same as previousState");
+    // }
+    //this.data.changePrevSectionState(this.sectionState);
+    // console.log("this.sectionState in ngOnInit: "+this.sectionState);
+  }
+
+  ngAfterViewInit() {
+    // this.data.currentSectionState.subscribe((value) => this.sectionState = value);
+    // console.log("this.sectionState in ngAfterViewInit: "+this.sectionState);
+  }
+
+  ngOnChanges(){
+    // this.data.currentSectionState.subscribe((value) => this.sectionState = value);
+    // console.log("this.sectionState in ngOnChanges: "+this.sectionState);
   }
 
   onResize(event){
@@ -93,33 +122,41 @@ export class AppComponent implements OnInit {
     }
   }
 
+  animationEnd(event){
+    console.log('animation ended');
+    this.sectionState = 'none';
+  }
+
   getSectionState(routerOutlet){
     
     if(routerOutlet.isActivated){
 
-      const { path } = routerOutlet.activatedRoute.routeConfig
-      const isSame = this.previousPath === path
-      const isBackward = this.previousPath.startsWith(path)
-      const isForward = path.startsWith(this.previousPath)
+      //console.log(this.data.getSectionState().value)
+      return this.data.getSectionState().value;
 
-      if (isSame) {
-        this.transitionName = 'none'
-      } else if (isBackward && isForward) {
-        this.transitionName = 'initial'
-      } else if (isBackward) {
-        this.transitionName = 'backward'
-      } else if (isForward) {
-        this.transitionName = 'forward'
-      }
+      // const { path } = routerOutlet.activatedRoute.routeConfig
+      // const isSame = this.previousPath === path
+      // const isBackward = this.previousPath.startsWith(path)
+      // const isForward = path.startsWith(this.previousPath)
 
-      this.counter++;
+      // if (isSame) {
+      //   this.transitionName = 'none'
+      // } else if (isBackward && isForward) {
+      //   this.transitionName = 'main'
+      // } else if (isBackward) {
+      //   this.transitionName = 'subsection'
+      // } else if (isForward) {
+      //   this.transitionName = 'main'
+      // }
 
-      this.previousPath = path
-      console.log("this.transitionName: "+this.transitionName);
-      //this.data.currentSectionState.subscribe((value) => this.sectionState = value );
+      // this.counter++;
+
+      // this.previousPath = path
+      // console.log("this.transitionName: "+this.transitionName);
+      // this.data.currentSectionState.subscribe((value) => this.sectionState = value );
       // console.log("routerOutlet: "+routerOutlet.activatedRoute);
-      //console.log("this.sectionState: "+this.sectionState);
-      return this.transitionName;
+      // console.log("this.sectionState: "+this.sectionState);
+      // return 'main';
       
     }
     

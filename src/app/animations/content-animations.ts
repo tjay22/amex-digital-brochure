@@ -162,5 +162,5 @@ const subSectionAnimation = [
 ];
 
 export const contentAnimation = trigger('animateContentPanels', [
-    transition('* => forward', mainSectionAnimation)
+    transition('* => *', mainSectionAnimation)
 ]);
