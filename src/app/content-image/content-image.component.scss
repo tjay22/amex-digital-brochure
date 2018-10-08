@@ -21,12 +21,16 @@
 .section-headline{
     position: absolute;
     z-index: 990;
-    top: 0;
     line-height: 1.2em;
     color: $white;
     font-family: $font-stack-bold;
     text-shadow: 1px 1px 1px rgba($black, 0.5);
     text-transform: uppercase;
+    overflow: hidden;
+
+    .section-headline-inner{
+        position: relative;
+    }
 }
 .section-headline .letter{
     display: inline-block;
@@ -37,6 +41,20 @@
 }
 .expanded .section-headline, .collapsed .section-headline{
     @include transition(all 1s ease-in-out);
+    //animation-name: bounce;
+    //animation-duration: 1.5s;
+}
+
+@keyframes bounce{
+    0% {
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(250px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
 }
 
 @include media-breakpoint-up(md){

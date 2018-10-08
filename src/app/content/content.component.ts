@@ -16,10 +16,12 @@ import { contentAnimation } from '../animations/content-animations';
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss'],
-  animations: [ pageResizeAnimation, contentAnimation ],
-  // host: {
-  //   '[@animateContentPanels]': 'isMainSection ? "main" : "subsection"'
-  // }
+  animations: [ pageResizeAnimation, routerAnimation ],
+  host: {
+    '[@animateContentPanels]': 'sectionState',
+    '(@animateContentPanels.start)': 'animationStart($event)',
+    '(@animateContentPanels.done)': 'animationEnd($event)'
+  }
 })
 export class ContentComponent implements OnInit {
 
@@ -34,7 +36,7 @@ export class ContentComponent implements OnInit {
   isCollapsed = false;
   isMainSection = true;
   currentState = 'expanded';
-  currentSectionState = 'main';
+  sectionState:string = 'none';
   desktop;
   mobile;
   sublinks;
@@ -57,6 +59,7 @@ export class ContentComponent implements OnInit {
   ){
     this.desktop = this.data.desktop;
     this.mobile = this.data.mobile;
+    this.data.currentSectionState.subscribe((value) => this.sectionState = value);
     router.events.subscribe( (event: Event) => {
       if(event instanceof NavigationStart){
         //console.log("Navigation Start");
@@ -188,6 +191,14 @@ export class ContentComponent implements OnInit {
       this.nextLink = this.nextTitle = null;
     }
     
+  }
+
+  animationStart(event){
+    console.log('child animation started');
+  }
+  animationEnd(event){
+    console.log('child animation ended');
+    this.sectionState = 'none';
   }
 
   toggleCollapse(){

@@ -27,7 +27,7 @@ export const imageItems: ImageItem[] = [
         "imagefile": imagespath+"travel.jpg",
         "background": true,
         "bgPosX": "10%",
-        "bgPosY": "0%",
+        "bgPosY": "center",
         "collapsedBgPosX": "28%",
         "mobileBgPosX": "28%"
     }

@@ -139,28 +139,50 @@ const mainSectionAnimation = [
 ];
 
 const subSectionAnimation = [
-    query(':enter', [
-        query('.col-copy', style({
-            transform: 'translateX(0%)'
-        })),
-        query('.col-image', style({
-            transform: 'translateX(0%)'
-        })),
-        group([
-            query('.col-copy', 
-                animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                    transform: 'translateX(0%)'
-                })),
-            ),
-            query('.col-image', 
-                animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                    transform: 'translateX(0%)'
-                })),
-            ),
+    sequence([
+        query(':leave', [
+            query('.section-content', style({
+                transform: 'translateX(0%)'
+            })),
+            query('.section-headline', style({
+                transform: 'translateX(0%)'
+            })),
+            group([
+                query('.section-content', 
+                    animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                        transform: 'translateX(50%)'
+                    })),
+                ),
+                query('.section-headline', 
+                    animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                        transform: 'translateX(50%)'
+                    })),
+                ),
+            ])
+        ]),
+        query(':enter', [
+            query('.section-content', style({
+                transform: 'translateX(50%)'
+            })),
+            query('.section-headline', style({
+                transform: 'translateX(50%)'
+            })),
+            group([
+                query('.section-content', 
+                    animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                        transform: 'translateX(0%)'
+                    })),
+                ),
+                query('.section-headline', 
+                    animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                        transform: 'translateX(0%)'
+                    })),
+                ),
+            ])
         ])
     ])
 ];
 
 export const contentAnimation = trigger('animateContentPanels', [
-    transition('* => *', mainSectionAnimation)
+    transition('* => subsection', subSectionAnimation)
 ]);

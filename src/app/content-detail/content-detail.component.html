@@ -1,4 +1,6 @@
 <div *ngIf="copy" class="section-content-container">
-  <div class="breadcrumb" [innerHTML]="breadcrumb | safeHtml"></div>
-  <div class="section-content" [innerHTML]="copy | safeHtml"></div>
+  <div>
+    <div class="breadcrumb" [innerHTML]="breadcrumb | safeHtml"></div>
+    <div class="section-content" [innerHTML]="copy | safeHtml"></div>
+  </div>
 </div>

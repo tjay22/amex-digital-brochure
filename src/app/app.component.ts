@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     this.data.currentSectionState.subscribe((value) => this.sectionState = value);
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        console.log("-------------------------------------");
+        //console.log("-------------------------------------");
         this.ngOnInit();
       }
     })
@@ -51,9 +51,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.getScreenSize();
     this.data.currentSectionState.subscribe((value) => this.sectionState = value);
-    this.data.prevSectionStateVar.subscribe((value) => this.prevSectionState = value);
-    console.log("this.sectionState: "+this.sectionState);
-    console.log("this.prevSectionState: "+this.prevSectionState);
+    // this.data.prevSectionStateVar.subscribe((value) => this.prevSectionState = value);
+    // console.log("this.sectionState: "+this.sectionState);
+    // console.log("this.prevSectionState: "+this.prevSectionState);
     //this.sectionState == 'main' ? this.sectionState = 'main-alt' : this.sectionState = 'main'
     //this.sectionState == 'subsection' ? this.sectionState = 'subsection-alt' : this.sectionState = 'subsection'
     // if(this.sectionState == this.prevSectionState){
@@ -64,17 +64,7 @@ export class AppComponent implements OnInit {
     //   console.log("sectionState is not the same as previousState");
     // }
     //this.data.changePrevSectionState(this.sectionState);
-    // console.log("this.sectionState in ngOnInit: "+this.sectionState);
-  }
-
-  ngAfterViewInit() {
-    // this.data.currentSectionState.subscribe((value) => this.sectionState = value);
-    // console.log("this.sectionState in ngAfterViewInit: "+this.sectionState);
-  }
-
-  ngOnChanges(){
-    // this.data.currentSectionState.subscribe((value) => this.sectionState = value);
-    // console.log("this.sectionState in ngOnChanges: "+this.sectionState);
+    console.log("this.sectionState in ngOnInit: "+this.sectionState);
   }
 
   onResize(event){
@@ -122,8 +112,11 @@ export class AppComponent implements OnInit {
     }
   }
 
+  animationStart(event){
+    console.log('parent animation started');
+  }
   animationEnd(event){
-    console.log('animation ended');
+    console.log('parent animation ended');
     this.sectionState = 'none';
   }
 

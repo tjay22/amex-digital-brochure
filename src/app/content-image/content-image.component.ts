@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute, ParamMap, RouterOutlet, Router, NavigationEnd, NavigationStart } from '@angular/router';
 
+import { fadeAnimation, routeSlide, routerAnimation } from '../animations/router-animations';
 import { contentAnimation } from '../animations/content-animations';
 
 import { DataService } from '../shared/data.service';
@@ -7,16 +9,23 @@ import { DataService } from '../shared/data.service';
 import { TweenMax, TweenLite, TimelineMax, TextPlugin, Linear, Power1, Power2, Elastic, CSSPlugin } from "gsap/TweenMax";
 
 
-//declare var TweenMax:any;
+declare var TweenMax:any;
 declare var $: any;
 
 @Component({
   selector: 'app-content-image',
   templateUrl: './content-image.component.html',
   styleUrls: ['./content-image.component.scss'],
-  animations: [ contentAnimation ]
+  animations: [ routerAnimation ],
+  host: {
+    '[@animateHeadline]': 'sectionState',
+    '(@animateHeadline.start)': 'animationStart($event)',
+    '(@animateHeadline.done)': 'animationEnd($event)'
+  }
 })
 export class ContentImageComponent implements OnInit {
+
+  @ViewChild('headline') headlineBox: ElementRef;
 
   @Input() image;
   @Input() headline;
@@ -24,6 +33,7 @@ export class ContentImageComponent implements OnInit {
 
   desktop;
   mobile;
+  sectionState:string = 'none';
 
   imagefile;
   background;
@@ -31,7 +41,7 @@ export class ContentImageComponent implements OnInit {
   bgPosY;
   collapsedBgPosX;
   mobileBgPosX;
-  headlineText;
+  headlineText = "";
   hlPosX;
   hlPosY;
   hlColor;
@@ -47,18 +57,33 @@ export class ContentImageComponent implements OnInit {
   backgroundDiv = $('.section-image');
 
 
-  constructor(private data:DataService) {
+  constructor(private data:DataService, private router: Router) {
     this.desktop = this.data.desktop;
     this.mobile = this.data.mobile;
+    this.data.currentSectionState.subscribe((value) => this.sectionState = value);
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log('content-image NavigationEnd');
+        this.sectionState = 'none';
+      }
+      // if (event instanceof NavigationEnd) {
+      //   this.animateElements('in');
+      //   this.headlineText = '';
+      //   console.log("this.headlineText: "+this.headlineText);
+      // }
+    })
   }
 
   ngOnInit() {
     //console.log("state onInit(): "+this.state);
+    this.headlineText = this.headline.headline;
     this.createStyles();
   }
 
   ngOnChanges() {
     //console.log("state onChanges(): "+this.state);
+    this.headlineText = this.headline.headline;    
+    console.log("content-image ngOnChanges and this.sectionState = "+this.sectionState);
     this.createStyles();
     //this.animateElements('out');
   }
@@ -131,17 +156,27 @@ export class ContentImageComponent implements OnInit {
   animateElements(state: string){
 
     if(state == 'out'){
-      this.headlineAnimation.add(TweenLite.fromTo(this.headlineDiv, 1, {opacity: 1, transform: 'translateX(0px)'}, {opacity: 0, transform: 'translateX(-50px)'}));
-      this.headlineAnimation.add(TweenLite.fromTo(this.backgroundDiv, 1, {opacity: 1}, {opacity: 0}));
-      setTimeout (() => {
-        this.createStyles();
-      }, 1000);
+      this.headlineAnimation.add(TweenMax.fromTo(this.headlineBox.nativeElement, 1, {opacity: 1, transform: 'translateX(0px)'}, {opacity: 0, transform: 'translateX(-100px)'}));
+      //this.headlineAnimation.add(TweenLite.to(this.headlineBox.nativeElement, 1, {text:{value:this.headlineText, oldClass:"class1", newClass:"class2", delimiter:" "}}));
+      //this.headlineAnimation.add(TweenMax.fromTo(this.backgroundDiv, 1, {opacity: 1}, {opacity: 0}));
+      // setTimeout (() => {
+      //   this.createStyles();
+      // }, 1000);
     }else if(state == 'in'){
-      this.headlineAnimation.add(TweenLite.fromTo(this.headlineDiv, 1, {opacity: 0, transform: 'translateX(-50px)'}, {opacity: 1, transform: 'translateX(0px)'}));
-      this.headlineAnimation.add(TweenLite.fromTo(this.backgroundDiv, 1, {opacity: 0}, {opacity: 1}));
+      //this.headlineAnimation.add(TweenLite.to(this.headlineBox.nativeElement, 1, {text:{value:this.headlineText, oldClass:"class1", newClass:"class2", delimiter:" "}}));
+      this.headlineAnimation.add(TweenMax.fromTo(this.headlineBox.nativeElement, 1, {opacity: 0, transform: 'translateX(-100px)'}, {opacity: 1, transform: 'translateX(0px)'}));
+      //this.headlineAnimation.add(TweenMax.fromTo(this.backgroundDiv, 1, {opacity: 0}, {opacity: 1}));
     }
     this.headlineAnimation.play();
 
+  }
+
+  animationStart(event){
+    console.log('content-image animation started and this.sectionState = '+this.sectionState);
+  }
+  animationEnd(event){
+    console.log('content-image animation ended');
+    this.sectionState = 'none';
   }
 
 }
