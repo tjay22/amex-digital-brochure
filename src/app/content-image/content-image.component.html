@@ -1,9 +1,12 @@
 <div *ngIf="background" class="section-image-container" [ngClass]="state">
   <div>
+    <!-- [@animateHeadline]="sectionState" (@animateHeadline.start)="animationStart($event)" (@animateHeadline.done)="animationEnd($event)" -->
     <div class="section-image" [ngStyle]="currentBackgroundStyles"></div>
-    <div class="section-headline" [ngStyle]="currentHeadlineStyles">
-      <div #headline class="section-headline-inner">
-          {{headlineText | uppercase}}
+    <div class="section-headline-container">
+      <div class="section-headline" [ngStyle]="currentHeadlineStyles">
+        <div #headline class="section-headline-inner">
+            {{headlineText | uppercase}}
+        </div>
       </div>
     </div>
   </div>

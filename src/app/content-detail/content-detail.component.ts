@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild, HostBinding } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; 
 
 import { DataService } from '../shared/data.service';
@@ -15,14 +15,16 @@ declare var TweenMax:any;
   templateUrl: './content-detail.component.html',
   styleUrls: ['./content-detail.component.scss'],
   animations: [ routerAnimation ],
-  host: {
-    '[@animateContent]': 'sectionState',
-    '(@animateContent.start)': 'animationStart($event)',
-    '(@animateContent.done)': 'animationEnd($event)'
-  }
+  // host: {
+  //   '[@animateContent]': 'sectionState',
+  //   '(@animateContent.start)': 'animationStart($event)',
+  //   '(@animateContent.done)': 'animationEnd($event)'
+  // }
 })
 
 export class ContentDetailComponent implements OnInit {
+
+  //@HostBinding('@animateContent')
 
   @Input() content;
 
@@ -47,6 +49,10 @@ export class ContentDetailComponent implements OnInit {
     this.getHTML();    
   }
 
+  ngOnDestroy(){
+    //console.log("<<  content-detail ngOnDestroy  >>");
+  }
+
   getHTML(){
     if(this.content.parent == 'null'){
       this.breadcrumb = this.content.title;
@@ -64,7 +70,7 @@ export class ContentDetailComponent implements OnInit {
     console.log('content-detail animation started and this.sectionState = '+this.sectionState);
   }
   animationEnd(event){
-    console.log('content-detail animation ended');
+    console.log('******** content-detail animation ended ********');
     this.sectionState = 'none';
   }
 

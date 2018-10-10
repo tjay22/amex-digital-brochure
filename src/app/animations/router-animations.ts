@@ -116,16 +116,16 @@ const mainSectionAnimation = [
           transform: 'translateX(0%)'
       })),
       group([
-          query('.col-copy', 
-              animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                  transform: 'translateX(-100%)'
-              })),
-          ),
-          query('.col-image', 
-              animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                  transform: 'translateX(100%)'
-              })),
-          ),
+        query('.col-copy', 
+            animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                transform: 'translateX(-100%)'
+            })),
+        ),
+        query('.col-image', 
+            animate('1.5s cubic-bezier(0.23, 1, 0.32, 1)', style({
+                transform: 'translateX(100%)'
+            })),
+        ),
       ])
     ]), 
     query(':enter', [
@@ -144,28 +144,56 @@ const mainSectionAnimation = [
 
 const subSectionAnimation = [
   query(':enter, :leave', style({ position: 'fixed' })),
-  query(':leave .col-copy', style({
-    transform: 'translateX(0%)'
-  })),
-  query(':enter .col-copy', style({
-    transform: 'translateX(100%)'
-  })),
-  sequence([
-    //query('@animateHeadline', animateChild()),
-    //query('@animateContent', animateChild()),
-    group([
-      query('@animateContentPanels', animateChild()),
-      query(':leave .col-copy', animate('1s ease-in-out', style({
-        transform: 'translateX(100%)'
-      }))),
+  query(':leave', [
+    query('.col-copy', [
+      style({ transform: 'translateX(0%)' })
     ]),
-    group([
-      query('@animateContentPanels', animateChild()),
-      query(':enter .col-copy', animate('1s ease-in-out', style({
-        transform: 'translateX(0%)'
-      }))),
+    query('.col-image', [
+      style({ opacity: 1, 'z-index': 1 })
+    ])
+  ]),
+  query(':enter', [
+    query('.col-copy', [
+      style({ transform: 'translateX(100%)'})
     ]),
-    
+    query('.col-image', [
+      style({ opacity: 1, 'z-index': 2 })
+    ])
+  ]),
+  group([
+    sequence([
+      query(':leave', [
+        group([
+          query('.col-copy', [
+            animate('1s ease-in-out', style({ transform: 'translateX(100%)' }))
+          ]),
+          query('.col-image', [
+            style({ opacity: 0 }),
+            animate('1s ease-in-out', style({ opacity: 1 }))
+          ])
+        ])
+      ]),
+      query(':enter', [
+        group([
+          query('.col-copy', [
+            animate('1s ease-in-out', style({ transform: 'translateX(0%)' }))
+          ]),
+          query('.col-image', [
+            style({ opacity: 1 }),
+            animate('1s ease-in-out', style({ opacity: 1 }))
+          ])
+        ])
+      ])
+    ]),
+    query('@animateContentPanels', animateChild()),
+  ]),
+  query(':enter', [
+    query('.col-copy', [
+      style({ transform: 'translateX(100%)' })
+    ]),
+    query('.col-image', [
+      style({ transform: 'translateX(100%)' })
+    ])
   ]),
 ];
 
@@ -220,54 +248,80 @@ const subSectionAnimation = [
 //   ])
 // ];
 
-const childAnimation = [
-  // query(':leave .section-content', style({
-  //   transform: 'translateX(0%)'
-  // })),
-  query(':leave .section-headline', style({
-    transform: 'translateX(0%)'
-  })),
-  // query(':enter .section-content', style({
-  //   transform: 'translateX(50%)'
-  // })),
-  query(':enter .section-headline', style({
-    transform: 'translateX(50%)'
-  })),
-    group([
-        query(':leave .section-headline', 
-            animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                transform: 'translateX(50%)'
-            })),
-        ),
+const contentPanelsAnimation = [
+  query(':leave', [
+    query('.section-content', [
+      style({ opacity: 0, transform: 'translateX(10%)' })
     ]),
-    group([
-        query(':enter .section-headline', 
-            animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
-                transform: 'translateX(0%)'
-            })),
-        ),
+    query('.section-headline-container', [
+      style({ opacity: 0, transform: 'translatey(100%)' })
     ])
+  ]),
+  query(':enter', [
+    query('.section-content', [
+      style({ opacity: 1, transform: 'translateX(0%)' })
+    ]),
+    query('.section-headline-container', [
+      style({ opacity: 1, transform: 'translateY(0%)' })
+    ])
+  ]),
+  sequence([
+    query(':leave', [
+      group([
+        query('.section-headline-container', [
+          style({ opacity: 1, transform: 'translateY(0%)' }),
+          animate('.5s ease-in-out', style({ opacity: 0, transform: 'translateY(100%)' }))
+        ]),
+        query('.section-content', [
+          style({ opacity: 1, transform: 'translateX(0%)' }),
+          animate('.5s ease-in-out', style({ opacity: 0, transform: 'translateX(10%)' }))
+        ])
+      ])
+    ]),
+    query(':enter', [
+      group([
+        query('.section-headline-container', [
+          style({ opacity: 0, transform: 'translateY(100%)' }),
+          animate('1s 2s ease-in-out', style({ opacity: 1, transform: 'translateY(0%)' }))
+        ]),
+        query('.section-content', [
+          style({ opacity: 0, transform: 'translateX(10%)' }),
+          animate('1s 1s ease-in-out', style({ opacity: 1, transform: 'translateX(0%)' }))
+        ])
+      ])
+    ])
+    
+  ])
+];
+
+const contentPanelsAnimationIn = [
+  sequence([
+    query('.section-content', [
+      style({ opacity: 0, transform: 'translateX(10%)' }),
+      animate('.5s ease-in-out', style({ opacity: 1, transform: 'translateX(0%)' }))
+    ]),
+    query('.section-headline', [
+      style({ opacity: 0 }),
+      animate('.5s ease-in-out', style({ opacity: 1 }))
+    ])
+  ])
+];
+
+const contentPanelsAnimationOut = [
+  sequence([
+    query('.section-content', [
+      style({ opacity: 1, transform: 'translateX(0%)' }),
+      animate('.5s ease-in-out', style({ opacity: 0, transform: 'translateX(10%)' }))
+    ]),
+    query('.section-headline', [
+      style({ opacity: 1 }),
+      animate('.5s ease-in-out', style({ opacity: 0 }))
+    ])
+  ])
 ];
 
 const headlineAnimation = [
-  query(':leave', style({
-    transform: 'translateY(0%)'
-  })),
-  query(':enter', style({
-    transform: 'translateY(50%)'
-  })),
-  sequence([
-    query(':leave', 
-      animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
-        transform: 'translateY(50%)'
-      }))
-    ),
-    query(':enter', 
-      animate('1s cubic-bezier(0.23, 1, 0.32, 1)', style({
-        transform: 'translateY(0%)'
-      }))
-    )
-  ])
+  
 ];
 
 function myInlineMatcherFn(fromState: string, toState: string, element: any, params: {[key:string]: any}): boolean {
@@ -277,17 +331,23 @@ function myInlineMatcherFn(fromState: string, toState: string, element: any, par
 }
 
 export const routerAnimation = [
+  trigger('changeRoute', [
+    transition('* => main', mainSectionAnimation),
+    transition('* => subsection', subSectionAnimation),
+  ]),
   trigger('animateHeadline', [
     transition('* => *', headlineAnimation)
   ]),
   trigger('animateContent', [
     transition('* => *', headlineAnimation)
   ]),
-  trigger('changeRoute', [
-    transition('* => main', mainSectionAnimation),
-    transition('* => subsection', subSectionAnimation),
-  ]),
   trigger('animateContentPanels', [
-    transition('* => *', childAnimation)
+    transition('* => *', contentPanelsAnimation)
+  ]),
+  trigger('animateContentPanelsIn', [
+    transition('* => *', contentPanelsAnimationIn)
+  ]),
+  trigger('animateContentPanelsOut', [
+    transition('* => *', contentPanelsAnimationOut)
   ])
 ];

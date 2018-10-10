@@ -12,7 +12,7 @@ import { contentAnimation } from './animations/content-animations';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [ routerAnimation, contentAnimation ]
+  animations: [ routerAnimation ]
 })
 export class AppComponent implements OnInit {
 
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     this.data.currentSectionState.subscribe((value) => this.sectionState = value);
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        //console.log("-------------------------------------");
+        console.log("------------------  LINK CLICKED!  -------------------");
         this.ngOnInit();
       }
     })
@@ -65,6 +65,10 @@ export class AppComponent implements OnInit {
     // }
     //this.data.changePrevSectionState(this.sectionState);
     console.log("this.sectionState in ngOnInit: "+this.sectionState);
+  }
+
+  ngOnDestroy(){
+    
   }
 
   onResize(event){

@@ -33,6 +33,13 @@
         background-color: $white;
     }
 
+    .col-copy{
+        z-index: 21;
+    }
+    .col-image{
+        z-index: 22;
+    }
+
     .sub-navigation{
         position: absolute;
         bottom: 0;

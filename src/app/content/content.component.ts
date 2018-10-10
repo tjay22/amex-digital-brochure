@@ -11,19 +11,22 @@ import { fadeAnimation, routeSlide, routerAnimation } from '../animations/router
 import { pageResizeAnimation } from '../animations/page-animations';
 import { contentAnimation } from '../animations/content-animations';
 
-//@HostBinding('@animateContentPanels')
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss'],
   animations: [ pageResizeAnimation, routerAnimation ],
-  host: {
-    '[@animateContentPanels]': 'sectionState',
-    '(@animateContentPanels.start)': 'animationStart($event)',
-    '(@animateContentPanels.done)': 'animationEnd($event)'
-  }
+  // host: {
+  //   '[@animateContentPanels]': 'sectionState',
+  //   '(@animateContentPanels.start)': 'animationStart($event)',
+  //   '(@animateContentPanels.done)': 'animationEnd($event)'
+  // }
 })
 export class ContentComponent implements OnInit {
+
+  @HostBinding('@animateContentPanels')
+  // @HostBinding('@animateContentPanelsIn')
+  // @HostBinding('@animateContentPanelsOut')
 
   navigation: NavigationItem;
   content: ContentItem;
@@ -36,7 +39,7 @@ export class ContentComponent implements OnInit {
   isCollapsed = false;
   isMainSection = true;
   currentState = 'expanded';
-  sectionState:string = 'none';
+  sectionState:string = 'main';
   desktop;
   mobile;
   sublinks;
@@ -76,7 +79,7 @@ export class ContentComponent implements OnInit {
   ngOnInit() {
 
     const link = this.router.url.replace('/', '');
-    console.log("link: "+link);
+    //console.log("link: "+link);
 
     this.data.currentImageId.subscribe(value => this.prevImageId = value);
 
@@ -194,17 +197,24 @@ export class ContentComponent implements OnInit {
   }
 
   animationStart(event){
-    console.log('child animation started');
+    console.log('event start: '+event)
+    //console.log('child animation started');
   }
   animationEnd(event){
-    console.log('child animation ended');
-    this.sectionState = 'none';
+    //console.log('child animation ended');
+    //this.sectionState = 'none';
   }
 
   toggleCollapse(){
     this.isCollapsed = !this.isCollapsed;
     this.isCollapsed ? this.currentState = 'collapsed' : this.currentState = 'expanded';
     this.data.changeCollapse(this.currentState);
+  }
+
+  toggleSection(){
+    this.sectionState == 'main' ? this.sectionState ='subsection' : this.sectionState='main';
+    //this.routing = this.sectionState;
+    //console.log("this.routing: "+this.routing);
   }
 
 }
