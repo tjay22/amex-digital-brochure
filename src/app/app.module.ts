@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ContentComponent } from './content/content.component';
 import { ContentDetailComponent } from './content-detail/content-detail.component';
 import { ContentImageComponent } from './content-image/content-image.component';
+import { ContentHeadlineComponent } from './content-headline/content-headline.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { OpeningSceneComponent } from './opening-scene/opening-scene.component';
 
@@ -23,11 +24,12 @@ import { DataService } from './shared/data.service';
     ContentComponent,
     ContentDetailComponent,
     ContentImageComponent,
+    ContentHeadlineComponent,
     SafeHtml,
     SafeId,
     SafeStyle,
     PageNotFoundComponent,
-    OpeningSceneComponent
+    OpeningSceneComponent,
   ],
   imports: [
     BrowserModule,

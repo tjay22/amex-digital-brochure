@@ -2,23 +2,11 @@
   <div>
     <!-- [@animateHeadline]="sectionState" (@animateHeadline.start)="animationStart($event)" (@animateHeadline.done)="animationEnd($event)" -->
     <div class="section-image" [ngStyle]="currentBackgroundStyles"></div>
-    <div class="section-headline-container">
-      <div class="section-headline" [ngStyle]="currentHeadlineStyles">
-        <div #headline class="section-headline-inner">
-            {{headlineText | uppercase}}
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
 <div *ngIf="!background" class="section-image-container">
   <div class="section-image">
     <img [src]="imagefile" [ngStyle]="currentImageStyles">
-  </div>
-  <div class="section-headline" [ngStyle]="currentHeadlineStyles">
-    <div class="section-headline-inner">
-        {{headlineText | uppercase}}
-    </div>
   </div>
 </div>

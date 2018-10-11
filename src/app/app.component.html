@@ -89,10 +89,13 @@
 <!-- <main [@changeRoute]="o.isActivated ? o.activatedRoute : ''" class="main-container">
   <router-outlet #o="outlet"></router-outlet>
 </main> -->
-
+<div class="background-image">
+  <app-content-image [image]="image" [state]="currentState ? currentState : 'expanded'"></app-content-image>
+</div>
 <main [@changeRoute]="sectionState" (@changeRoute.start)="animationStart($event)" (@changeRoute.done)="animationEnd($event)" class="main-container">
   <router-outlet #o="outlet"></router-outlet>
 </main>
+
 
 <!-- <main class="main-container">
   <router-outlet #o="outlet"></router-outlet>

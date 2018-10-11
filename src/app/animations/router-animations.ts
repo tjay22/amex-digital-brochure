@@ -142,56 +142,45 @@ const mainSectionAnimation = [
   ])
 ];
 
-const subSectionAnimation = [
+const subSectionAnimation = direction => [
   query(':enter, :leave', style({ position: 'fixed' })),
   query(':leave', [
     query('.col-copy', [
       style({ transform: 'translateX(0%)' })
-    ]),
-    query('.col-image', [
-      style({ opacity: 1, 'z-index': 1 })
     ])
   ]),
   query(':enter', [
     query('.col-copy', [
-      style({ transform: 'translateX(100%)'})
-    ]),
-    query('.col-image', [
-      style({ opacity: 1, 'z-index': 2 })
+      style({ transform: `translateX(${direction === 'right' ? '-' : ''}100%)`})
     ])
   ]),
   group([
-    sequence([
-      query(':leave', [
-        group([
-          query('.col-copy', [
-            animate('1s ease-in-out', style({ transform: 'translateX(100%)' }))
-          ]),
-          query('.col-image', [
-            style({ opacity: 0 }),
-            animate('1s ease-in-out', style({ opacity: 1 }))
-          ])
-        ])
-      ]),
-      query(':enter', [
-        group([
-          query('.col-copy', [
-            animate('1s ease-in-out', style({ transform: 'translateX(0%)' }))
-          ]),
-          query('.col-image', [
-            style({ opacity: 1 }),
-            animate('1s ease-in-out', style({ opacity: 1 }))
-          ])
+    query(':leave', [
+      group([
+        query('.col-copy', [
+          animate('1s ease-in-out', style({ transform: `translateX(${direction === 'left' ? '-' : ''}100%)` }))
+        ]),
+        query('.col-image', [
+          animate('1s ease-in-out', style({ opacity: 0 }))
         ])
       ])
     ]),
-    query('@animateContentPanels', animateChild()),
+    query(':enter', [
+      group([
+        query('.col-copy', [
+          style({ opacity: 1 }),
+          animate('1s ease-in-out', style({ transform: 'translateX(0%)' }))
+        ]),
+        query('.col-image', [
+          style({ opacity: 0 }),
+          animate('1s ease-in-out', style({ opacity: 1 }))
+        ])
+      ])
+    ]),
   ]),
+  query('@animateContentPanels', animateChild()),
   query(':enter', [
     query('.col-copy', [
-      style({ transform: 'translateX(100%)' })
-    ]),
-    query('.col-image', [
       style({ transform: 'translateX(100%)' })
     ])
   ]),
@@ -254,75 +243,101 @@ const contentPanelsAnimation = [
       style({ opacity: 0, transform: 'translateX(10%)' })
     ]),
     query('.section-headline-container', [
-      style({ opacity: 0, transform: 'translatey(100%)' })
+      style({ opacity: 0 })
     ])
   ]),
   query(':enter', [
     query('.section-content', [
-      style({ opacity: 1, transform: 'translateX(0%)' })
+      style({ opacity: 0, transform: 'translateX(0%)' })
     ]),
     query('.section-headline-container', [
-      style({ opacity: 1, transform: 'translateY(0%)' })
+      style({ opacity: 0, 'z-index': 101 })
     ])
   ]),
   sequence([
     query(':leave', [
       group([
         query('.section-headline-container', [
-          style({ opacity: 1, transform: 'translateY(0%)' }),
-          animate('.5s ease-in-out', style({ opacity: 0, transform: 'translateY(100%)' }))
+          style({ opacity: 1 }),
+          animate('.5s ease-in-out', style({ opacity: 0 }))
         ]),
         query('.section-content', [
           style({ opacity: 1, transform: 'translateX(0%)' }),
-          animate('.5s ease-in-out', style({ opacity: 0, transform: 'translateX(10%)' }))
+          animate('1s .8s ease-in-out', style({ opacity: 0, transform: 'translateX(10%)' }))
         ])
       ])
     ]),
     query(':enter', [
       group([
-        query('.section-headline-container', [
-          style({ opacity: 0, transform: 'translateY(100%)' }),
-          animate('1s 2s ease-in-out', style({ opacity: 1, transform: 'translateY(0%)' }))
-        ]),
         query('.section-content', [
-          style({ opacity: 0, transform: 'translateX(10%)' }),
-          animate('1s 1s ease-in-out', style({ opacity: 1, transform: 'translateX(0%)' }))
+          style({ opacity: 0, transform: 'translateX(20%)' }),
+          animate('1s .8s ease-in-out', style({ opacity: 1, transform: 'translateX(0%)' }))
         ])
       ])
     ])
-    
-  ])
+  ]),
+    query('.section-headline-container', [
+      style({ opacity: 1, transform: 'translateY(0%)' }),
+      animate('.5s ease-in-out', style({ opacity: 1, transform: 'translateY(100%)' })),
+      animate('.5s ease-in-out', style({ opacity: 1, transform: 'translateY(0%)' }))
+    ])
 ];
 
-const contentPanelsAnimationIn = [
-  sequence([
+const contentAnimation = [
+  query(':leave', [
     query('.section-content', [
-      style({ opacity: 0, transform: 'translateX(10%)' }),
-      animate('.5s ease-in-out', style({ opacity: 1, transform: 'translateX(0%)' }))
-    ]),
-    query('.section-headline', [
-      style({ opacity: 0 }),
-      animate('.5s ease-in-out', style({ opacity: 1 }))
+      style({ opacity: 0, transform: 'translateX(10%)' })
     ])
-  ])
-];
-
-const contentPanelsAnimationOut = [
-  sequence([
+  ]),
+  query(':enter', [
     query('.section-content', [
-      style({ opacity: 1, transform: 'translateX(0%)' }),
-      animate('.5s ease-in-out', style({ opacity: 0, transform: 'translateX(10%)' }))
-    ]),
-    query('.section-headline', [
-      style({ opacity: 1 }),
-      animate('.5s ease-in-out', style({ opacity: 0 }))
+      style({ opacity: 1, transform: 'translateX(0%)' })
     ])
+  ]),
+  sequence([
+    query(':leave', [
+      query('.section-content', [
+        style({ opacity: 1, transform: 'translateX(0%)' }),
+        animate('.5s .8s ease-in-out', style({ opacity: 0, transform: 'translateX(10%)' }))
+      ])
+    ]),
+    query(':enter', [
+      query('.section-content', [
+        style({ opacity: 0, transform: 'translateX(10%)' }),
+        animate('1s .8s ease-in-out', style({ opacity: 1, transform: 'translateX(0%)' }))
+      ])
+    ]),
+    query('@animateHeadline', animateChild())
   ])
 ];
 
 const headlineAnimation = [
-  
+  query(':leave', [
+    query('.section-headline-inner', [
+      style({ opacity: 0, transform: 'translateY(100%)' })
+    ])
+  ]),
+  query(':enter', [
+    query('.section-headline-inner', [
+      style({ opacity: 1, transform: 'translateY(0%)' })
+    ])
+  ]),
+  sequence([
+    query(':leave', [
+      query('.section-headline-inner', [
+        style({ opacity: 1, transform: 'translateY(0%)' }),
+        animate('.5s .5s ease-in-out', style({ opacity: 0, transform: 'translateY(100%)' }))
+      ])
+    ]),
+    query(':enter', [
+      query('.section-headline-inner', [
+        style({ opacity: 0, transform: 'translateY(100%)' }),
+        animate('1s .5s ease-in-out', style({ opacity: 1, transform: 'translateY(0%)' }))
+      ])
+    ])
+  ])
 ];
+
 
 function myInlineMatcherFn(fromState: string, toState: string, element: any, params: {[key:string]: any}): boolean {
   // notice that `element` and `params` are also available here
@@ -333,21 +348,16 @@ function myInlineMatcherFn(fromState: string, toState: string, element: any, par
 export const routerAnimation = [
   trigger('changeRoute', [
     transition('* => main', mainSectionAnimation),
-    transition('* => subsection', subSectionAnimation),
+    transition('* => subsection-right', subSectionAnimation('right')),
+    transition('* => subsection-left', subSectionAnimation('left')),
   ]),
   trigger('animateHeadline', [
     transition('* => *', headlineAnimation)
   ]),
   trigger('animateContent', [
-    transition('* => *', headlineAnimation)
+    transition('* => *', contentAnimation)
   ]),
   trigger('animateContentPanels', [
     transition('* => *', contentPanelsAnimation)
-  ]),
-  trigger('animateContentPanelsIn', [
-    transition('* => *', contentPanelsAnimationIn)
-  ]),
-  trigger('animateContentPanelsOut', [
-    transition('* => *', contentPanelsAnimationOut)
   ])
 ];

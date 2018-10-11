@@ -40,6 +40,12 @@
         z-index: 22;
     }
 
+    .background-image{
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+    }
+
     .sub-navigation{
         position: absolute;
         bottom: 0;
@@ -88,6 +94,7 @@
     transform: rotate(0deg);
     -webkit-transition: 1s ease;
     transition: 1s ease;
+    z-index: 890;
 }
 #panel-resizer.collapsed{
     transform: rotate(180deg);

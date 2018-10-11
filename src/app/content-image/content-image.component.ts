@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, HostBinding } from '@angular/core';
 import { ActivatedRoute, ParamMap, RouterOutlet, Router, NavigationEnd, NavigationStart } from '@angular/router';
 
-import { fadeAnimation, routeSlide, routerAnimation } from '../animations/router-animations';
-import { contentAnimation } from '../animations/content-animations';
+import { routerAnimation } from '../animations/router-animations';
 
 import { DataService } from '../shared/data.service';
 
@@ -16,22 +15,16 @@ declare var $: any;
   selector: 'app-content-image',
   templateUrl: './content-image.component.html',
   styleUrls: ['./content-image.component.scss'],
-  animations: [ routerAnimation ],
-  // host: {
-  //   '[@animateHeadline]': 'sectionState',
-  //   '(@animateHeadline.start)': 'animationStart($event)',
-  //   '(@animateHeadline.done)': 'animationEnd($event)'
-  // }
+  animations: [ routerAnimation ]
 })
 export class ContentImageComponent implements OnInit {
 
   //@ViewChild('headline') headlineBox: ElementRef;
 
-  //@HostBinding('@animateHeadline')
+  @HostBinding('@animateContent')
 
-  @Input() image;
-  @Input() headline;
-  @Input() state;
+  @Input() image
+  @Input() state
 
   desktop;
   mobile;
@@ -43,20 +36,9 @@ export class ContentImageComponent implements OnInit {
   bgPosY;
   collapsedBgPosX;
   mobileBgPosX;
-  headlineText = "";
-  hlPosX;
-  hlPosY;
-  hlColor;
-  hlFontSize;
-  hlWidth;
 
   currentBackgroundStyles = {};
   currentImageStyles = {};
-  currentHeadlineStyles = {};
-
-  headlineAnimation = new TimelineMax();
-  headlineDiv = $('.section-headline');
-  backgroundDiv = $('.section-image');
 
 
   constructor(private data:DataService, private router: Router) {
@@ -90,10 +72,6 @@ export class ContentImageComponent implements OnInit {
     //this.animateElements('out');
   }
 
-  ngOnDestroy(){
-    //console.log("<<  content-image ngOnDestroy  >>");
-  }
-
   createStyles(){
     // console.log("=======================");
     // console.log("image: "+this.image );
@@ -104,31 +82,15 @@ export class ContentImageComponent implements OnInit {
     this.imagefile = this.image.imagefile;
     this.background = this.image.background;
     this.bgPosY = this.image.bgPosY ? this.image.bgPosY : '0%';
-    this.headlineText = this.headline.headline;
     if(this.desktop){
       if(this.state == "expanded"){
         this.bgPosX =  this.image.bgPosX ? this.image.bgPosX : '-30%';
-        this.hlPosX = this.headline.hlPosX ? this.headline.hlPosX : '3vw';
-        this.hlPosY = this.headline.hlPosY ? this.headline.hlPosY : '50vh';
-        this.hlColor = this.headline.hlColor ? this.headline.hlColor : '#ffffff';
-        this.hlFontSize = this.headline.hlFontSize ? this.headline.hlFontSize : '2.5rem';
-        this.hlWidth = this.headline.hlWidth ? this.headline.hlWidth : '30vw';
       }else if(this.state == "collapsed"){
         this.bgPosX =  this.image.collapsedBgPosX ? this.image.collapsedBgPosX : '-30%';
-        this.hlPosX = this.headline.collapsedHLPosX ? this.headline.collapsedHLPosX : '2vw';
-        this.hlPosY = this.headline.collapsedHLPosY ? this.headline.collapsedHLPosY : '60vh';
-        this.hlColor = this.headline.collapsedHLColor ? this.headline.collapsedHLColor : '#ffffff';
-        this.hlFontSize = this.headline.collapsedHLFontSize ? this.headline.collapsedHLFontSize : '2rem';
-        this.hlWidth = this.headline.collapsedHLWidth ? this.headline.collapsedHLWidth : '20vw';
       }
     }
     if(this.mobile){
       this.bgPosX =  this.image.mobileBgPosX ? this.image.mobileBgPosX : '50%';
-      this.hlPosX = this.headline.mobileHLPosX ? this.headline.mobileHLPosX : '5vw';
-      this.hlPosY = this.headline.mobileHLPosY ? this.headline.mobileHLPosY : '60vh';
-      this.hlColor = this.headline.mobileHLColor ? this.headline.mobileHLColor : '#ffffff';
-      this.hlFontSize = this.headline.mobileHLFontSize ? this.headline.mobileHLFontSize : '2rem';
-      this.hlWidth = this.headline.mobileHLWidth ? this.headline.mobileHLWidth : '90vw';
     }
     this.setCurrentStyles();
   }
@@ -143,32 +105,8 @@ export class ContentImageComponent implements OnInit {
     this.currentImageStyles = {
       'transform': 'translate(' + this.bgPosX + ', ' + this.bgPosY + ')'
     };
-
-    this.currentHeadlineStyles = {
-      'color': this.hlColor,
-      'margin': this.hlPosX,
-      'top': this.hlPosY,
-      //'transform': 'translateY(' + this.hlPosY + ')',
-      'font-size': this.hlFontSize,
-      'max-width': this.hlWidth
-    }
-    //this.animateElements('in');
+    
   }
-
-  checkAnimation(){
-    this.createStyles();
-  }
-
-  // animateElements(state: string){
-
-  //   if(state == 'out'){
-  //     this.headlineAnimation.add(TweenMax.fromTo(this.headlineBox.nativeElement, 1, {opacity: 1, transform: 'translateX(0px)'}, {opacity: 0, transform: 'translateX(-100px)'}));
-  //   }else if(state == 'in'){
-  //     this.headlineAnimation.add(TweenMax.fromTo(this.headlineBox.nativeElement, 1, {opacity: 0, transform: 'translateX(-100px)'}, {opacity: 1, transform: 'translateX(0px)'}));
-  //   }
-  //   this.headlineAnimation.play();
-
-  // }
 
   animationStart(event){
     console.log('content-image animation started and this.sectionState = '+this.sectionState);

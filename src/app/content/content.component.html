@@ -13,14 +13,22 @@
         <div class="col-image" [@imageResize]="isCollapsed ? 'collapsed' : 'expanded'">
           <!-- <button style="position:absolute; width: 50px; height: 50px; z-index:100; left: 100px;" (click)="toggleSection()">TEST</button> -->
           <button id="panel-resizer" (click)="toggleCollapse()" [class]="currentState"><i class="fas fa-chevron-right fa-fw"></i></button>
-          <app-content-image [image]="image" [headline]="headline" [state]="currentState ? currentState : 'expanded'"></app-content-image>
+          <div class="background-image">
+            <app-content-image [image]="image" [state]="currentState ? currentState : 'expanded'"></app-content-image>
+          </div>
+          <div class="headline">
+            <app-content-headline [headline]="headline" [state]="currentState ? currentState : 'expanded'"></app-content-headline>
+          </div>
         </div>
       </div>
     </ng-container>
     <ng-container *ngIf="mobile">
       <div id="mobile">
         <div class="col-image">
-          <app-content-image [image]="image" [headline]="headline" [state]="currentState ? currentState : 'expanded'"></app-content-image>
+          <div class="background-image">
+              <app-content-image [image]="image" [state]="currentState ? currentState : 'expanded'"></app-content-image>
+          </div>
+          <app-content-headline [headline]="headline" [state]="currentState ? currentState : 'expanded'"></app-content-headline>
         </div>
         <div class="col-copy">
           <app-content-detail [content]="content"></app-content-detail>

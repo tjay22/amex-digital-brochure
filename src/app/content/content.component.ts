@@ -7,9 +7,8 @@ import { DataService } from '../shared/data.service';
 import { NavigationItem } from '../models/navigation.model';
 import { ContentItem } from '../models/content.model';
 
-import { fadeAnimation, routeSlide, routerAnimation } from '../animations/router-animations';
+import { routerAnimation } from '../animations/router-animations';
 import { pageResizeAnimation } from '../animations/page-animations';
-import { contentAnimation } from '../animations/content-animations';
 
 @Component({
   selector: 'app-content',
@@ -25,10 +24,9 @@ import { contentAnimation } from '../animations/content-animations';
 export class ContentComponent implements OnInit {
 
   @HostBinding('@animateContentPanels')
-  // @HostBinding('@animateContentPanelsIn')
-  // @HostBinding('@animateContentPanelsOut')
-
+  
   navigation: NavigationItem;
+  prevNavID;
   content: ContentItem;
   image: any;
   prevImageId;
@@ -82,6 +80,7 @@ export class ContentComponent implements OnInit {
     //console.log("link: "+link);
 
     this.data.currentImageId.subscribe(value => this.prevImageId = value);
+    this.data.currentNavigationId.subscribe((value) => this.prevNavID = value);
 
     this.data.getNavigation(link).subscribe(content => this.navigation = content);
 
@@ -92,7 +91,15 @@ export class ContentComponent implements OnInit {
       //console.log("this.prevImageId: "+this.prevImageId);
       //console.log("this.navigaiton.imageId: "+this.navigation.imageID);
       if(this.prevImageId == this.navigation.imageID){
-        this.data.changeSectionState('subsection');
+        //this.data.changeSectionState('subsection');
+
+        if(this.navigation.id > this.prevNavID){
+          this.data.changeSectionState('subsection-right');
+        }else if(this.navigation.id < this.prevNavID){
+          this.data.changeSectionState('subsection-left');
+        }else{
+          this.data.changeSectionState('subsection');
+        }
         //console.log("loading subsection");
         this.isMainSection = false;
       }else{
@@ -110,6 +117,7 @@ export class ContentComponent implements OnInit {
       this.getPreviousLink();
       this.getNextLink();
       this.data.changeLoadedImageId(this.imageID);
+      this.data.changeNavId(this.contentID);
     }else{
       this.router.navigate(['/page-not-found']);
     }

@@ -15,7 +15,6 @@ import { imageItems } from '../data/images';
 
 import { PageTitle } from '../models/page-title.model';
 import { pageTitleItems } from '../data/page-titles';
-import { stagger } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +33,7 @@ export class DataService {
   private prevSectionState = new Rx.BehaviorSubject<string>('main');
   private openingScene = new Rx.BehaviorSubject<boolean>(false);
   private imageLoadedId = new Rx.BehaviorSubject<Number>(1);
+  private navigationId = new Rx.BehaviorSubject<number>(1);
 
   currentScreenWidth = this.screenWidth.asObservable();
   currentScreenHeight = this.screenHeight.asObservable();
@@ -43,6 +43,7 @@ export class DataService {
   prevSectionStateVar = this.prevSectionState.asObservable();
   currentOpeningScene = this.openingScene.asObservable();
   currentImageId = this.imageLoadedId.asObservable();
+  currentNavigationId = this.navigationId.asObservable();
 
   xs = 576;
   sm = 768;
@@ -117,6 +118,10 @@ export class DataService {
 
   changeLoadedImageId(val: Number){
     this.imageLoadedId.next(val);
+  }
+
+  changeNavId(val: number){
+    this.navigationId.next(val);
   }
 
   playOpeningScene(val: boolean){

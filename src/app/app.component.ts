@@ -5,8 +5,7 @@ import { navigationTopLevelItems, navigationSecondLevelItems } from './data/navi
 import { DataService } from './shared/data.service';
 import { NavigationItem } from './models/navigation.model';
 
-import { fadeAnimation, routeSlide, routerAnimation } from './animations/router-animations';
-import { contentAnimation } from './animations/content-animations';
+import { routerAnimation } from './animations/router-animations';
 
 @Component({
   selector: 'app-root',
@@ -27,9 +26,13 @@ export class AppComponent implements OnInit {
   navOpen = false;
   currentNav;
   currentState;
+  currentNavId:Number = 1;
   sectionState:string = 'none';
   prevSectionState;
   playOpeningScene = false;
+
+  navigation: NavigationItem;
+  image: any;
 
   menuTopLevelItems = navigationTopLevelItems;
   menuSecondLevelItems = navigationSecondLevelItems;
@@ -51,24 +54,27 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.getScreenSize();
     this.data.currentSectionState.subscribe((value) => this.sectionState = value);
-    // this.data.prevSectionStateVar.subscribe((value) => this.prevSectionState = value);
-    // console.log("this.sectionState: "+this.sectionState);
-    // console.log("this.prevSectionState: "+this.prevSectionState);
-    //this.sectionState == 'main' ? this.sectionState = 'main-alt' : this.sectionState = 'main'
-    //this.sectionState == 'subsection' ? this.sectionState = 'subsection-alt' : this.sectionState = 'subsection'
-    // if(this.sectionState == this.prevSectionState){
-    //   console.log("sectionState is the same as previousState");
-    //   this.sectionState = this.sectionState.concat("-alt");
-    //   console.log("newSectionState: "+this.sectionState);
-    // }else{
-    //   console.log("sectionState is not the same as previousState");
-    // }
-    //this.data.changePrevSectionState(this.sectionState);
-    console.log("this.sectionState in ngOnInit: "+this.sectionState);
+    
+    const link = this.router.url.replace('/', '');
+
+    this.data.getNavigation(link).subscribe(content => this.navigation = content);
+    if(this.navigation){
+      this.currentNavId = this.navigation.imageID;
+      console.log('currentNavId: '+this.currentNavId);
+      this.getImage();
+    }
   }
 
-  ngOnDestroy(){
-    
+  ngOnChanges(){
+    //this.data.currentNavigationId.subscribe((value) => this.currentNavId = value);
+    console.log('currentNavId: '+this.currentNavId);
+    if(this.navigation){
+      this.getImage();
+    }
+  }
+
+  getImage(){
+    this.data.getImage(this.currentNavId).subscribe(imagedata => this.image = imagedata);
   }
 
   onResize(event){
