@@ -21,7 +21,7 @@ export class ContentImageComponent implements OnInit {
 
   //@ViewChild('headline') headlineBox: ElementRef;
 
-  @HostBinding('@animateContent')
+  //@HostBinding('@animateContent')
 
   @Input() image
   @Input() state

@@ -36,7 +36,7 @@
 <div *ngIf="desktop" id="desktop-nav">
   <nav>
     <ul class="nav-list">
-      <li *ngFor="let menuTopLevelItem of menuTopLevelItems" id="{{menuTopLevelItem.name | safeId | lowercase}}" [class]="menuTopLevelItem.dropdown ? 'nav-dropdown nav-title' : 'nav-title'" (click)="toggle(menuTopLevelItem)">
+      <li *ngFor="let menuTopLevelItem of menuTopLevelItems" id="{{menuTopLevelItem.name | safeId | lowercase}}" [class]="menuTopLevelItem.dropdown ? 'nav-dropdown nav-title' : 'nav-title'">
 
         <div class="inner-nav">
           <a [routerLink]="menuTopLevelItem.link != 'null' ? menuTopLevelItem.link : null" routerLinkActive="active" data-placement="left" data-trigger="hover" [attr.data-content]="menuTopLevelItem.name" data-toggle="popover" [attr.data-state]="menuTopLevelItem.state"><i class="{{menuTopLevelItem.icon}} fa-fw"></i> {{menuTopLevelItem.name}}</a>
@@ -53,8 +53,46 @@
   </nav>
 </div>
 
-<nav *ngIf="mobile" id="mobile-nav" class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<div *ngIf="mobile" id="mobile-nav">
+  <button class="nav-toggle">
+    <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="50" onclick="this.classList.toggle('active')">
+      <path
+            class="line top"
+            d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+      <path
+            class="line middle"
+            d="m 30,50 h 40" />
+      <path
+            class="line bottom"
+            d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+    </svg>
+  </button>
+  <div class="sidebar">
+    <div class="sidebar-content">
+      <nav>
+        <ul class="nav-list">
+          <li *ngFor="let menuTopLevelItem of menuTopLevelItems" id="{{menuTopLevelItem.name | safeId | lowercase}}" [class]="menuTopLevelItem.dropdown ? 'nav-dropdown-li nav-title' : 'nav-title'">
+    
+            <div class="inner-nav">
+              <a [routerLink]="menuTopLevelItem.link != 'null' ? menuTopLevelItem.link : null" routerLinkActive="active" [attr.data-state]="menuTopLevelItem.state"><i class="{{menuTopLevelItem.icon}} fa-fw"></i> {{menuTopLevelItem.name}}</a>
+              <div class="dropdown-icon"><i class="fas fa-chevron-right fa-fw"></i></div>
+              
+              <div aria-labelledby="navbarDropdown" class="nav-dropdown">
+                <ng-container *ngFor="let menuSecondLevelItem of menuSecondLevelItems">
+                  <a class="nav-dropdown-item" *ngIf="menuSecondLevelItem.parent == menuTopLevelItem.name" routerLink="{{menuSecondLevelItem.link}}" routerLinkActive="active"><span [innerHTML]="menuSecondLevelItem.name"></span></a>
+                </ng-container>
+              </div>
+            </div>
+    
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- <nav *ngIf="mobile" id="mobile-nav" class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -75,31 +113,23 @@
 
       </li>
     </ul>
-  </div> -->
-  <svg class="sidebar" viewBox="0 0 300 500">
-    <path class="s-path" fill="#fff" d="M0,0 50,0 a0,250 0 1,1 0,500 L0,500" />
-  </svg>
-</nav>
-
-
-<!-- <main [@routeTrigger]="o.isActivated ? o.activatedRoute : ''" class="main-container">
-  <router-outlet #o="outlet"></router-outlet>
-</main> -->
+  </div>
+</nav> -->
 
 <!-- <main [@changeRoute]="o.isActivated ? o.activatedRoute : ''" class="main-container">
   <router-outlet #o="outlet"></router-outlet>
 </main> -->
-<div class="background-image">
+<!-- <div class="background-image" [ngClass]="[sectionState, currentState ? currentState : 'expanded']"> -->
+<div id="background-image" [ngClass]="{
+  'main': sectionState=='main' ? true : false,
+  'collapsed': currentState=='collapsed' ? true : false,
+  'expanded': currentState=='expanded ? true : false'
+}">
   <app-content-image [image]="image" [state]="currentState ? currentState : 'expanded'"></app-content-image>
 </div>
 <main [@changeRoute]="sectionState" (@changeRoute.start)="animationStart($event)" (@changeRoute.done)="animationEnd($event)" class="main-container">
   <router-outlet #o="outlet"></router-outlet>
 </main>
-
-
-<!-- <main class="main-container">
-  <router-outlet #o="outlet"></router-outlet>
-</main> -->
 
 <ng-container *ngIf="playOpeningScene">
   <app-opening-scene></app-opening-scene>

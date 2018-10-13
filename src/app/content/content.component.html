@@ -4,10 +4,12 @@
     <ng-container *ngIf="desktop">
       <div id="desktop">
         <div class="col-copy" [@copyResize]="isCollapsed ? 'collapsed' : 'expanded'">
-          <app-content-detail [content]="content"></app-content-detail>
-          <div class="sub-navigation">
-            <div class="previous"><div *ngIf="previousLink"><i class="fas fa-chevron-left fa-fw"></i> <a routerLink="/{{previousLink}}" >{{previousTitle}}</a></div></div>
-            <div class="next"><div *ngIf="nextLink"><a routerLink="/{{nextLink}}" >{{nextTitle}}</a> <i class="fas fa-chevron-right fa-fw"></i></div></div>
+          <div class="col-copy-inner">
+            <app-content-detail [content]="content"></app-content-detail>
+            <div class="sub-navigation">
+              <div class="previous"><div *ngIf="previousLink"><i class="fas fa-chevron-left fa-fw"></i> <a routerLink="/{{previousLink}}" >{{previousTitle}}</a></div></div>
+              <div class="next"><div *ngIf="nextLink"><a routerLink="/{{nextLink}}" >{{nextTitle}}</a> <i class="fas fa-chevron-right fa-fw"></i></div></div>
+            </div>
           </div>
         </div>
         <div class="col-image" [@imageResize]="isCollapsed ? 'collapsed' : 'expanded'">

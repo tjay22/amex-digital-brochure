@@ -1,6 +1,5 @@
 <div *ngIf="copy" class="section-content-container">
   <div>
-    <!-- [@animateContent]="sectionState" (@animateContent.start)="animationStart($event)" (@animateContent.done)="animationEnd($event)" -->
     <div class="breadcrumb" [innerHTML]="breadcrumb | safeHtml"></div>
     <div class="section-content" [innerHTML]="copy | safeHtml"></div>
   </div>

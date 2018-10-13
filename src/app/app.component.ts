@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   mobile = false;
   navOpen = false;
   currentNav;
-  currentState;
+  currentState = 'expanded';
   currentNavId:Number = 1;
   sectionState:string = 'none';
   prevSectionState;
@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
     this.data.currentScreenHeight.subscribe((value) => this.screenHeight = value );
     this.data.currentScreenOrientation.subscribe((value) => this.screenOrientation = value );
     this.data.currentOpeningScene.subscribe((value) => this.playOpeningScene = value);
+    this.data.currentState.subscribe(value => this.currentState = value);
     this.data.currentSectionState.subscribe((value) => this.sectionState = value);
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -54,6 +55,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.getScreenSize();
     this.data.currentSectionState.subscribe((value) => this.sectionState = value);
+    this.data.currentState.subscribe(value => this.currentState = value);
+
+    console.log("this.sectionState: "+this.sectionState+", this.currentState: "+this.currentState);
     
     const link = this.router.url.replace('/', '');
 
@@ -111,22 +115,22 @@ export class AppComponent implements OnInit {
     }
   }
 
-  toggle(item){
-    if(this.currentNav != item && this.currentNav){
-      this.currentNav.state = "closed";
-    }
-    if(item.link == 'null'){
-      item.state = (item.state == 'closed') ? 'open' : 'closed';
-      this.currentNav = item;
-      this.currentState = item.state;
-    }
-  }
+  // toggle(item){
+  //   if(this.currentNav != item && this.currentNav){
+  //     this.currentNav.state = "closed";
+  //   }
+  //   if(item.link == 'null'){
+  //     item.state = (item.state == 'closed') ? 'open' : 'closed';
+  //     this.currentNav = item;
+  //     this.currentState = item.state;
+  //   }
+  // }
 
   animationStart(event){
-    console.log('parent animation started');
+    //console.log('parent animation started');
   }
   animationEnd(event){
-    console.log('parent animation ended');
+    //console.log('parent animation ended');
     this.sectionState = 'none';
   }
 

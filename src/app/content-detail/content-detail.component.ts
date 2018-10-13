@@ -3,28 +3,16 @@ import { HttpClient } from '@angular/common/http';
 
 import { DataService } from '../shared/data.service';
 
-import { fadeAnimation, routeSlide, routerAnimation } from '../animations/router-animations';
-import { contentAnimation } from '../animations/content-animations';
-
-import { TweenMax, TimelineLite, Power1, Power2, Elastic, CSSPlugin } from "gsap/TweenMax";
-
-declare var TweenMax:any;
+import { routerAnimation } from '../animations/router-animations';
 
 @Component({
   selector: 'app-content-detail',
   templateUrl: './content-detail.component.html',
   styleUrls: ['./content-detail.component.scss'],
-  animations: [ routerAnimation ],
-  // host: {
-  //   '[@animateContent]': 'sectionState',
-  //   '(@animateContent.start)': 'animationStart($event)',
-  //   '(@animateContent.done)': 'animationEnd($event)'
-  // }
+  animations: [ routerAnimation ]
 })
 
 export class ContentDetailComponent implements OnInit {
-
-  //@HostBinding('@animateContent')
 
   @Input() content;
 

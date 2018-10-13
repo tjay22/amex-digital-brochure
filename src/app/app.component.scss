@@ -27,13 +27,30 @@
   opacity: 0.2;
 }
 
-.background-image{
+#background-image{
   width: 50vw;
   height: 100vh;
   position: absolute;
   left: 50vw;
-  z-index: 10;
+  z-index: 0;
+  visibility: visible;
+  overflow: hidden;
 }
+#background-image.main{
+  visibility: hidden;
+}
+#background-image.collapsed{
+  width: 25vw;
+  left: 75vw;
+}
+#background-image.expanded{
+  width: 50vw;
+  left: 50vw;
+}
+// #background-image{
+//   @include transition(width 1s ease-in-out);
+//   @include transition(left 1s ease-in-out);
+// }
 
 #desktop-nav{
   position: fixed;
@@ -119,6 +136,178 @@
   width: 100%;
   top: 0;
   left: 0;
+
+  .nav-toggle{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    z-index: 200;
+    color: $white;
+  }
+  .nav-toggle:focus{
+    outline:none;
+  }
+
+  .sidebar{
+    position: absolute;
+    top: 0;
+    left: 0vw;
+    width: 60vw;
+    height: 100vh;
+    background-color: rgba($light-blue, 0.8);
+
+    ul.nav-list{
+      list-style: none;
+
+      li.nav-title .inner-nav > a{
+        border-bottom:1px dotted rgba($white, 0.5);
+      }
+  
+      li.nav-title{
+        // margin: 0rem .5rem;
+        // padding: .15rem 0rem;
+        position: relative;
+        text-transform: uppercase;
+        font-size: .9em;
+        cursor: pointer;
+        // height: 45px;
+        // border-bottom:1px dotted rgba($white, 0.5);
+        opacity: 0;
+        
+        :hover{
+          text-decoration: none;
+        }
+  
+        a{
+          padding: .8rem .6rem .8rem 0rem;
+          color: $white;
+          display: block;
+  
+          :hover{
+            text-decoration: none;
+          }
+  
+          svg{
+            width: 40px;
+            font-size: 1em;
+          }
+
+        }
+
+        .dropdown-icon{
+          display: none;
+        }
+
+        .nav-dropdown .dropdown-icon{
+          width: 30px;
+          position: absolute;
+          right: 0;
+          top: 0;
+          display: block;
+          color: $white;
+        }
+  
+        .nav-dropdown{
+          width: 100%;
+          top:45px;
+          z-index: 100;
+          opacity: 0;
+        }
+  
+        .nav-dropdown a{
+          display: block;
+          padding: 0rem;
+          background-color: rgba($dark-blue, 0.5);
+          font-size:0.8rem;
+          text-transform: none;
+          position: relative;
+          // opacity: 0;
+        }
+        .nav-dropdown a span{
+          padding: .4rem .6rem;
+          display: block;
+          border-bottom:1px dotted rgba($white, 0.2);
+          background-color: rgba($white, 0);
+          -webkit-transition: background-color 0.5s;
+          transition: background-color 0.5s;
+        }
+        .nav-dropdown a:hover span,
+        .nav-dropdown a.active span{
+          background-color: rgba($white, 0.2);
+        }
+        
+      }
+
+      li.nav-dropdown-li{
+        .dropdown-icon{
+          width: 30px;
+          position: absolute;
+          right: .3rem;
+          top: 0;
+          display: block;
+          color: $white;
+          text-align: right;
+          padding: .8rem 0rem;
+        }
+      }
+    }
+  }
+
+  .ham {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .hamRotate.active {
+    transform: rotate(45deg);
+  }
+  .hamRotate180.active {
+    transform: rotate(180deg);
+  }
+  .line {
+    fill:none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: $white;
+    stroke-width:5.5;
+    stroke-linecap:round;
+  }
+  .ham1 .top {
+    stroke-dasharray: 40 139;
+  }
+  .ham1 .bottom {
+    stroke-dasharray: 40 180;
+  }
+  .ham1.active .top {
+    stroke-dashoffset: -98px;
+  }
+  .ham1.active .bottom {
+    stroke-dashoffset: -138px;
+  }
+
+  .sidebar-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 60px;
+    overflow: hidden;
+
+    ul{
+      list-style: none;
+      margin-left: -40px;
+
+      a{
+        color: $white;
+      }
+    }
+  }
 }
 
 @include media-breakpoint-down(xs){

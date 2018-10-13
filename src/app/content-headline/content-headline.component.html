@@ -1,17 +1,13 @@
 <div *ngIf="desktop" class="section-headline-container" [ngClass]="state">
   <div>
     <div class="section-headline" [ngStyle]="currentHeadlineStyles">
-      <div class="section-headline-inner">
-          {{headlineText | uppercase}}
-      </div>
+      <div class="section-headline-inner" [innerHTML]="headlineText | uppercase | splitText | safeHtml"></div>
     </div>
   </div>
 </div>
 
 <div *ngIf="mobile" class="section-headline-container">
   <div class="section-headline" [ngStyle]="currentHeadlineStyles">
-    <div class="section-headline-inner">
-        {{headlineText | uppercase}}
-    </div>
+    <div class="section-headline-inner" [innerHTML]="headlineText | uppercase | splitText | safeHtml"></div>
   </div>
 </div>

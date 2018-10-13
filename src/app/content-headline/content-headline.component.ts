@@ -1,14 +1,9 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { ActivatedRoute, ParamMap, RouterOutlet, Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { Component, OnInit, Input, HostBinding, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { routerAnimation } from '../animations/router-animations';
 
 import { DataService } from '../shared/data.service';
-
-import { TweenMax, TweenLite, TimelineMax, TextPlugin, Linear, Power1, Power2, Elastic, CSSPlugin } from "gsap/TweenMax";
-
-declare var TweenMax:any;
-declare var $: any;
 
 @Component({
   selector: 'app-content-headline',
@@ -17,8 +12,6 @@ declare var $: any;
   animations: [ routerAnimation ]
 })
 export class ContentHeadlineComponent implements OnInit {
-
-  @HostBinding('@animateHeadline')
 
   @Input() headline
   @Input() state
@@ -35,10 +28,6 @@ export class ContentHeadlineComponent implements OnInit {
   hlWidth;
 
   currentHeadlineStyles = {};
-
-  headlineAnimation = new TimelineMax();
-  headlineDiv = $('.section-headline');
-  backgroundDiv = $('.section-image');
 
   constructor(private data:DataService, private router: Router) {
     this.desktop = this.data.desktop;

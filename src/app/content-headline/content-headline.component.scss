@@ -10,15 +10,24 @@
 }
 .section-headline{
     position: absolute;
-    line-height: 1.2em;
+    line-height: 1em;
     color: $white;
     font-family: $font-stack-bold;
     text-shadow: 1px 1px 1px rgba($black, 0.5);
     text-transform: uppercase;
-    overflow: hidden;
+    overflow: hidden;    
 }
-.section-headline .letter{
+
+:host ::ng-deep .hl-word-mask{
     display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
+    .hl-word{
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .expanded .section-headline, .collapsed .section-headline{

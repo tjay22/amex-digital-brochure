@@ -28,7 +28,7 @@ export class DataService {
   private screenWidth = new Rx.BehaviorSubject<number>(window.innerWidth);
   private screenHeight = new Rx.BehaviorSubject<number>(window.innerHeight);
   private screenOrientation = new Rx.BehaviorSubject<string>(null);
-  private state = new Rx.BehaviorSubject<string>(null);
+  private state = new Rx.BehaviorSubject<string>('expanded');
   private sectionState = new Rx.BehaviorSubject<string>('main');
   private prevSectionState = new Rx.BehaviorSubject<string>('main');
   private openingScene = new Rx.BehaviorSubject<boolean>(false);
