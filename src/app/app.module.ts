@@ -15,7 +15,7 @@ import { OpeningSceneComponent } from './opening-scene/opening-scene.component';
 import { SafeHtml } from './pipes/safeHtml';
 import { SafeId } from './pipes/safeId';
 import { SafeStyle } from './pipes/safeStyle';
-import { SplitText } from './pipes/SplitText';
+import { SplitText } from './pipes/splitText';
 
 import { DataService } from './shared/data.service';
 

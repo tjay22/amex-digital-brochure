@@ -109,7 +109,7 @@ const contentPanelsAnimation = [
       ])),
       query(':leave .section-content', [
         style({ opacity: 1, transform: 'translateX(0%)' }),
-        animate('1s .8s ease-in-out', style({ opacity: 0, transform: 'translateX(20%)' }))
+        animate('1s .8s ease-in-out', style({ opacity: 0, transform: 'translateX(30%)' }))
       ])
     ]),
     group([
@@ -118,7 +118,7 @@ const contentPanelsAnimation = [
         animate('.5s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)', style({ transform: 'translateY(0%)' }))
       ])),
       query(':enter .section-content', [
-        style({ opacity: 0, transform: 'translateX(20%)' }),
+        style({ opacity: 0, transform: 'translateX(30%)' }),
         animate('1s .8s ease-in-out', style({ opacity: 1, transform: 'translateX(0%)' }))
       ])
     ])
