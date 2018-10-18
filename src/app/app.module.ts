@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import {APP_BASE_HREF} from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ContentComponent } from './content/content.component';
@@ -39,7 +40,7 @@ import { DataService } from './shared/data.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ DataService ],
+  providers: [ DataService, {provide: APP_BASE_HREF, useValue: '/AMEX/2018/34213_digital_guides/platinum_charge_v2/'} ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
